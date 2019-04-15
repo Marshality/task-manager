@@ -14,14 +14,14 @@ const Manager* Manager::getInstance() {
     return instance.get();
 }
 
-Object* Manager::get(std::string&& table, std::string& params) const {
+Object* Manager::get(std::string&& table, std::string&& params) const {
     auto it1 = tables.find(table);
     if (it1 == tables.end()) {
         throw "Not found.";
     }
 
-    Meta meta = it1->second.metaInfo;
-    Creator* creator = it1->second.creator;
+    auto meta = it1->second.metaInfo;
+    auto creator = it1->second.creator;
 
     // сначала распарсить query
     auto it2 = meta.fields.find(params);
@@ -33,9 +33,10 @@ Object* Manager::get(std::string&& table, std::string& params) const {
         throw "Incorrect.";
     }
 
-    //
-    std::string query = "SELECT * FROM " + table + " WHERE " + params;
+    // Сборка запроса + экранирование
+    std::string query = "SELECT * FROM " + meta.tableName + " WHERE " + params;
 
+    // Обращение к БД
     auto set = PSQL.query(query);
 
     creator->create();

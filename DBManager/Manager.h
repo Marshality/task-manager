@@ -23,7 +23,7 @@ struct Controller {
 class Manager {
 public:
     const static Manager* getInstance();
-    Object* get(std::string&& table, std::string& query) const;
+    Object* get(std::string&& table, std::string&& query) const;
 
 private:
     std::unordered_map<std::string, Controller> tables;
