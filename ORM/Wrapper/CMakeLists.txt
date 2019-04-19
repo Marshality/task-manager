@@ -13,3 +13,10 @@ add_executable(Wrapper
         Cursor.cpp
         Cursor.h
         )
+
+add_library(wrapperlib
+        Manager.cpp
+        Manager.h
+        Cursor.cpp
+        Cursor.h
+        )
