@@ -6,9 +6,9 @@
 #define PROJECT_CONCRETECOMMAND_H
 
 #include <iostream>
-#include "ICommand.h"
+#include "BaseCommand.h"
 
-class ConcreteCommand : public ICommand {
+class ConcreteCommand : public BaseCommand {
 public:
     explicit ConcreteCommand(int arg) : value(arg) {}
 
@@ -17,5 +17,9 @@ public:
 private:
     int value;
 };
+
+void ConcreteCommand::execute() {
+    std::cout << value << std::endl;
+}
 
 #endif //PROJECT_CONCRETECOMMAND_H

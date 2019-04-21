@@ -6,7 +6,17 @@
 #define PROJECT_RECEIVER_H
 
 #include "commands/ConcreteCommand.h"
+#include "commands/CreateProjectCommand.h"
+#include "commands/CreateTaskCommand.h"
+#include "commands/DeleteProjectCommand.h"
+#include "commands/DeleteTaskCommand.h"
+#include "commands/EditProjectCommand.h"
+#include "commands/EditTaskCommand.h"
+
 #include "Invoker.h"
+
+#include <string>
+#include <unordered_map>
 
 class Receiver {
 public:
@@ -15,16 +25,14 @@ public:
 
     void test(int arg);
 
-    void createProject();
-    void deleteProject();
+    void createProject(std::unordered_map<std::string, std::string>& data);
+    void deleteProject(std::string& id);
 
-    void createTask();
-    void deleteTask();
+    void createTask(std::unordered_map<std::string, std::string>& data);
+    void deleteTask(std::string& id);
 
-    void editProject();
-    void editTask();
-
-    void assignUser();
+    void editProject(std::unordered_map<std::string, std::string>& data);
+    void editTask(std::unordered_map<std::string, std::string>& data);
 
 private:
     Invoker invoker;
