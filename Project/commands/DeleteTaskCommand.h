@@ -6,7 +6,7 @@
 #define PROJECT_DELETETASKCOMMAND_H
 
 #include "BaseCommand.h"
-#include <string>
+#include <unordered_map>
 #include "../Task.h"
 #include "exceptions/IdIsNotFoundException.h"
 

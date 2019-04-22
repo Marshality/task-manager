@@ -5,7 +5,9 @@
 #ifndef PROJECT_EDITTASKCOMMAND_H
 #define PROJECT_EDITTASKCOMMAND_H
 
+#include "BaseCommand.h"
 #include "../Task.h"
+#include <unordered_map>
 #include "exceptions/FieldIsMissedException.h"
 
 class EditTaskCommand : public BaseCommand {

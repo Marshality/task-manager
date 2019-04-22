@@ -6,7 +6,7 @@
 #define PROJECT_EDITPROJECTCOMMAND_H
 
 #include "BaseCommand.h"
-#include <string>
+#include <unordered_map>
 #include "../Project.h"
 #include "exceptions/FieldIsMissedException.h"
 

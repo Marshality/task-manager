@@ -6,7 +6,7 @@
 #define PROJECT_DELETEPROJECTCOMMAND_H
 
 #include "BaseCommand.h"
-#include <string>
+#include <unordered_map>
 #include "../Project.h"
 #include "exceptions/IdIsNotFoundException.h"
 
