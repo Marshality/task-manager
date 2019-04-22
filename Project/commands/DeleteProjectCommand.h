@@ -8,19 +8,27 @@
 #include "BaseCommand.h"
 #include <string>
 #include "../Project.h"
+#include "exceptions/IdIsNotFoundException.h"
 
 class DeleteProjectCommand : public BaseCommand {
 public:
-    explicit DeleteProjectCommand(std::string& _id) : id(_id) {}
+    explicit DeleteProjectCommand(std::unordered_map<std::string, std::string>& _data) : data(_data) {}
 
     void execute() override;
 
 private:
-    std::string& id;
+    std::unordered_map<std::string, std::string>& data;
 };
 
 void DeleteProjectCommand::execute() {
-    Project::objects()->remove(id);
+    auto it = data.find("id");
+
+    if (it == data.end()) {
+        // ... message to http-server
+        throw IdIsNotFoundException();
+    }
+
+    Project::objects()->remove(it->second);
 }
 
 #endif //PROJECT_DELETEPROJECTCOMMAND_H

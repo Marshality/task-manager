@@ -18,6 +18,8 @@
 #include <string>
 #include <unordered_map>
 
+typedef std::unordered_map<std::string, std::string> DataPackage;
+
 class Receiver {
 public:
     Receiver() = default;
@@ -25,14 +27,14 @@ public:
 
     void test(int arg);
 
-    void createProject(std::unordered_map<std::string, std::string>& data);
-    void deleteProject(std::string& id);
+    void createProject(DataPackage& data);
+    void deleteProject(DataPackage& data);
 
-    void createTask(std::unordered_map<std::string, std::string>& data);
-    void deleteTask(std::string& id);
+    void createTask(DataPackage& data);
+    void deleteTask(DataPackage& data);
 
-    void editProject(std::unordered_map<std::string, std::string>& data);
-    void editTask(std::unordered_map<std::string, std::string>& data);
+    void editProject(DataPackage& data);
+    void editTask(DataPackage& data);
 
 private:
     Invoker invoker;

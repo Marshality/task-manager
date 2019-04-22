@@ -6,6 +6,7 @@
 #define PROJECT_EDITTASKCOMMAND_H
 
 #include "../Task.h"
+#include "exceptions/FieldIsMissedException.h"
 
 class EditTaskCommand : public BaseCommand {
 public:

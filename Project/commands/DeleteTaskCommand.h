@@ -8,19 +8,27 @@
 #include "BaseCommand.h"
 #include <string>
 #include "../Task.h"
+#include "exceptions/IdIsNotFoundException.h"
 
 class DeleteTaskCommand : public BaseCommand {
 public:
-    explicit DeleteTaskCommand(std::string& _id) : id(_id) {}
+    explicit DeleteTaskCommand(std::unordered_map<std::string, std::string>& _data) : data(_data) {}
 
     void execute() override;
 
 private:
-    std::string& id;
+    std::unordered_map<std::string, std::string>& data;
 };
 
 void DeleteTaskCommand::execute() {
-    Task::objects()->remove(id);
+    auto it = data.find("id");
+
+    if (it == data.end()) {
+        // ... message to http-server
+        throw IdIsNotFoundException();
+    }
+
+    Task::objects()->remove(it->second);
 }
 
 #endif //PROJECT_DELETETASKCOMMAND_H

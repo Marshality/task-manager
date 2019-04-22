@@ -10,32 +10,32 @@ void Receiver::test(int arg) {
     invoker.execute();
 }
 
-void Receiver::createTask(std::unordered_map<std::string, std::string>& data) {
+void Receiver::createTask(DataPackage& data) {
     invoker.setCommand(new CreateTaskCommand(data));
     invoker.execute();
 }
 
-void Receiver::createProject(std::unordered_map<std::string, std::string>& data) {
+void Receiver::createProject(DataPackage& data) {
     invoker.setCommand(new CreateProjectCommand(data));
     invoker.execute();
 }
 
-void Receiver::deleteProject(std::string& id) {
-    invoker.setCommand(new DeleteProjectCommand(id));
+void Receiver::deleteProject(DataPackage& data) {
+    invoker.setCommand(new DeleteProjectCommand(data));
     invoker.execute();
 }
 
-void Receiver::deleteTask(std::string& id) {
-    invoker.setCommand(new DeleteTaskCommand(id));
+void Receiver::deleteTask(DataPackage& data) {
+    invoker.setCommand(new DeleteTaskCommand(data));
     invoker.execute();
 }
 
-void Receiver::editTask(std::unordered_map<std::string, std::string>& data) {
+void Receiver::editTask(DataPackage& data) {
     invoker.setCommand(new EditTaskCommand(data));
     invoker.execute();
 }
 
-void Receiver::editProject(std::unordered_map<std::string, std::string>& data) {
+void Receiver::editProject(DataPackage& data) {
     invoker.setCommand(new EditProjectCommand(data));
     invoker.execute();
 }

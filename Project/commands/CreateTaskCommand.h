@@ -8,6 +8,7 @@
 #include "BaseCommand.h"
 #include <unordered_map>
 #include "../Task.h"
+#include "exceptions/FieldIsMissedException.h"
 
 class CreateTaskCommand : public BaseCommand {
 public:

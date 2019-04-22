@@ -8,6 +8,7 @@
 #include "BaseCommand.h"
 #include <string>
 #include "../Project.h"
+#include "exceptions/FieldIsMissedException.h"
 
 class EditProjectCommand : public BaseCommand {
 public:
