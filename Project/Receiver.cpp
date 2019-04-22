@@ -3,12 +3,6 @@
 //
 
 #include "Receiver.h"
-#include "Task.h"
-
-void Receiver::test(int arg) {
-    invoker.setCommand(new ConcreteCommand(arg));
-    invoker.execute();
-}
 
 void Receiver::createTask(DataPackage& data) {
     invoker.setCommand(new CreateTaskCommand(data));

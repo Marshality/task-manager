@@ -5,7 +5,6 @@
 #ifndef PROJECT_RECEIVER_H
 #define PROJECT_RECEIVER_H
 
-#include "commands/ConcreteCommand.h"
 #include "commands/CreateProjectCommand.h"
 #include "commands/CreateTaskCommand.h"
 #include "commands/DeleteProjectCommand.h"
@@ -24,8 +23,6 @@ class Receiver {
 public:
     Receiver() = default;
     ~Receiver() = default;
-
-    void test(int arg);
 
     void createProject(DataPackage& data);
     void deleteProject(DataPackage& data);

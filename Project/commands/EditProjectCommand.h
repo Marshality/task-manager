@@ -8,7 +8,7 @@
 #include "BaseCommand.h"
 #include <unordered_map>
 #include "../Project.h"
-#include "exceptions/FieldIsMissedException.h"
+#include "exceptions/IdIsNotFoundException.h"
 
 class EditProjectCommand : public BaseCommand {
 public:
@@ -25,7 +25,7 @@ void EditProjectCommand::execute() {
 
     if (it == data.end()) {
         // message to http-server
-        throw FieldIsMissedException();
+        throw IdIsNotFoundException();
     }
 
     std::string options;
