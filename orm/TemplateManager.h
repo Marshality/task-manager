@@ -8,7 +8,7 @@
 #include <iostream>
 
 template <typename Object>
-class Template {
+class Manager {
 public:
     void print() { Object::print(); }
 };
@@ -16,7 +16,7 @@ public:
 template <typename Object>
 class BaseObject {
 public:
-    static Template<Object> objects() { return Template<Object>(); }
+    static Manager<Object> objects() { return Manager<Object>(); }
 };
 
 class User : public BaseObject<User> {
