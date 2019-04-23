@@ -4,16 +4,18 @@
 #include "Connection.h"
 
 int main() {
-    auto manager = wrapper::Manager::getInstance();
+    Connection connection("host=localhost port=2389 dbname=crab user=jason password=");
 
     try {
-        auto cursor = manager->execute("SELECT * FROM info;");
+        auto cursor = connection.execute("SELECT * FROM info;");
         while (cursor.next()) {
-            std::cout << cursor.get(0) << " " << cursor.get(1) << std::endl;
+            std::cout << cursor.get(-1) << " " << cursor.get(1) << std::endl;
         }
-    } catch (const char* e) {
-        std::cout << e << std::endl;
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
     }
+
+
 
     return 0;
 }

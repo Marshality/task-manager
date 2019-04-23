@@ -12,10 +12,9 @@
 
 class Connection {
 public:
-    explicit Manager(const char* config) : connection(PQconnectdb(config)) {}
-    ~Manager() { PQfinish(connection); }
+    explicit Connection(const char* config) : connection(PQconnectdb(config)) {}
+    ~Connection() { PQfinish(connection); }
 
-    const static Manager* getInstance();
     bool isActive() const { return PQstatus(connection) == CONNECTION_OK; }
 
     Cursor execute(std::string&& query) const;

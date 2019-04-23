@@ -7,29 +7,25 @@
 
 #include <libpq-fe.h>
 
-namespace wrapper {
 
-    class Cursor {
-    public:
-        explicit Cursor(PGresult* _result);
-        ~Cursor() { PQclear(result); }
+class Cursor {
+public:
+    explicit Cursor(PGresult* _result);
+    ~Cursor() { PQclear(result); }
 
-        bool next() const;
-        void reset() const { position = -1; }
-
-        const char* get(int field) const;
+    bool next() const;
+    void reset() const { position = -1; }
 
 
+    const char* get(int fieldIndex) const;
 
-    private:
-        PGresult* result;
+private:
+    PGresult* result;
 
-        mutable int position = -1;
-        const int objectsCount;
-        const int fieldsCount;
+    mutable int position = -1;
+    const int objectsCount;
+    const int fieldsCount;
+};
 
-    };
-
-}
 
 #endif //ORM_CURSOR_H
