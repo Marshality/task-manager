@@ -4,35 +4,32 @@
 
 #include "Receiver.h"
 
-void Receiver::test(int arg) {
-    invoker.setCommand(new ConcreteCommand(arg));
+void Receiver::createTask(DataPackage& data) {
+    invoker.setCommand(new CreateTaskCommand(data));
     invoker.execute();
 }
 
-void Receiver::createProject() {
-
+void Receiver::createProject(DataPackage& data) {
+    invoker.setCommand(new CreateProjectCommand(data));
+    invoker.execute();
 }
 
-void Receiver::deleteProject() {
-
+void Receiver::deleteProject(DataPackage& data) {
+    invoker.setCommand(new DeleteProjectCommand(data));
+    invoker.execute();
 }
 
-void Receiver::createTask() {
-
+void Receiver::deleteTask(DataPackage& data) {
+    invoker.setCommand(new DeleteTaskCommand(data));
+    invoker.execute();
 }
 
-void Receiver::deleteTask() {
-
+void Receiver::editTask(DataPackage& data) {
+    invoker.setCommand(new EditTaskCommand(data));
+    invoker.execute();
 }
 
-void Receiver::editProject() {
-
-}
-
-void Receiver::editTask() {
-
-}
-
-void Receiver::assignUser() {
-
+void Receiver::editProject(DataPackage& data) {
+    invoker.setCommand(new EditProjectCommand(data));
+    invoker.execute();
 }

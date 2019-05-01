@@ -5,26 +5,35 @@
 #ifndef PROJECT_INVOKER_H
 #define PROJECT_INVOKER_H
 
-#include "commands/ICommand.h"
+#include "commands/BaseCommand.h"
+#include <exception>
 
 class Invoker {
 public:
     Invoker() = default;
 
     ~Invoker() {
-        delete command;
+        if (command) {
+            delete command;
+        }
     };
 
-    void setCommand(ICommand* command) {
+    void setCommand(BaseCommand* command) {
         this->command = command;
     }
 
     void execute() {
-        this->command->execute();
+        try {
+            this->command->execute();
+        } catch (std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
+
+        delete command;
     }
 
 private:
-    ICommand* command;
+    BaseCommand* command;
 };
 
 #endif //PROJECT_INVOKER_H

@@ -12,16 +12,9 @@ public:
     Task() = default;
     ~Task() = default;
 
-private:
-    int id;
-
     std::string title;
     std::string description;
-
-    int startTime, endTime;
-
     std::string assignee;
-    int assigneeId;
 };
 
 #endif //PROJECT_ITASK_H

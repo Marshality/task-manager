@@ -12,12 +12,8 @@ public:
     User() = default;
     ~User() = default;
 
-private:
-    int id;
-
     std::string firstName;
     std::string secondName;
-
     std::string role;
 };
 
