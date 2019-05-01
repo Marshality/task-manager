@@ -8,16 +8,41 @@
 #include <string>
 
 #include "validators/IntegerValidator.h"
+#include "BaseField.h"
 
-class IntegerField {
+class IntegerField : public BaseField {
 public:
-    IntegerField& operator=(long long _data);
-    IntegerField& operator=(const std::string& _data);
+    inline IntegerField& operator=(long long _data) {
+        data = _data;
+        return *this;
+    }
+
+    inline IntegerField& operator=(const std::string& _data) override {
+        accept(_data);
+        return *this;
+    }
+
+    inline std::string stringify() const override {
+        return std::to_string(data);
+    }
 
 private:
     long long data = 0;
 
-    IntegerValidator validator;
+    void accept(const std::string& string) override {
+        if (string.empty() && !std::isdigit(string[0]) && string[0] != '-' && string[0] != '+') {
+            throw "Not an integer";
+        }
+
+        char* endPtr;
+        auto temp = std::strtoll(string.c_str(), &endPtr, 10);
+
+        if (*endPtr != 0) {
+            throw "Met unacceptable symbols";
+        }
+
+        data = temp;
+    }
 };
 
 #endif //ORM_INTEGERFIELD_H

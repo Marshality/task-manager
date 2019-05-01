@@ -9,12 +9,20 @@
 
 class IntegerValidator : public BaseValidator {
 public:
-    bool isValid(const std::string& string) override;
+    bool isValid(const std::string& string) const override {
+        if (string.empty()) {
+            return false;
+        }
 
-    long long getCache() const;
+        if (!std::isdigit(string[0]) && string[0] != '-' && string[0] != '+') {
+            return false;
+        }
 
-private:
-    long long cache;
+        char* endPtr;
+        std::strtoll(string.c_str(), &endPtr, 10);
+
+        return (*endPtr == 0);
+    }
 };
 
 #endif //ORM_INTEGERVALIDATOR_H
