@@ -17,16 +17,20 @@ protected:
     Model() = default;
 
     // Binding derived class with its default manager
-    static constexpr Manager<Object> objects;
+    static Manager<Object> objects;
+
+    static std::unordered_map<std::string, BaseValidator*>* fields;
 };
+
+template <typename Object>
+Manager<Object> Model<Object>::objects = {};
+
+template <typename Object>
+std::unordered_map<std::string, BaseValidator*>* Model<Object>::fields = &Model<Object>::objects.metaInfo.fields;
 
 template <typename Object>
 void Model<Object>::save() {
     objects.save(*this);
 }
-
-struct Task : public Model<Task> {
-
-};
 
 #endif //ORM_BASEOBJECT_H

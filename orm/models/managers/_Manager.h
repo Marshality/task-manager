@@ -8,5 +8,5 @@
 template <typename Object>
 void Manager<Object>::save(Model<Object>& model) const {
     auto& object = static_cast<Object&>(model);
-    object.print();
+    //object.print();
 }

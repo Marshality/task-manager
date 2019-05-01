@@ -10,9 +10,11 @@
 
 class BaseField {
 public:
+    explicit BaseField(BaseValidator* _validator) : validator(_validator) {}
+
     // Operator accepting data in string form
     inline virtual BaseField& operator=(const std::string& _data) {
-        accept(_data);
+        pass(_data);
         return *this;
     }
 
@@ -20,8 +22,10 @@ public:
     inline virtual std::string stringify() const = 0;
 
 protected:
-    // Basic method validating and accepting data in string form
-    virtual void accept(const std::string& string) = 0;
+    BaseValidator* validator;
+
+    // Basic method calling validator's pass method
+    inline virtual void pass(const std::string& string) = 0;
 };
 
 #endif //ORM_BASEFIELD_H
