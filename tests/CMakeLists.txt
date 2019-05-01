@@ -37,6 +37,6 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(testing main.cpp main.cpp CreateProjectCommand_Test.h CreateTaskCommand_Test.h DeleteProjectCommand_Test.h DeleteTaskCommand_Test.h EditProjectCommand_Test.h EditTaskCommand_Test.h)
+add_executable(testing main.cpp)
 target_link_libraries(testing gtest_main)
 add_test(NAME example_test COMMAND example)
