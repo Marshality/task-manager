@@ -19,6 +19,7 @@ class CharField : Field<Char> {
     using Base = Field<Char>;
 
 public:
+    using Base::Base;
     using Base::operator=;
 };
 

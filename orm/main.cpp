@@ -1,20 +1,19 @@
 #include <iostream>
-#include <vector>
-#include "IntegerField.h"
-#include "IntegerValidator.h"
-#include "CharField.h"
+
+#include "DateField.h"
+#include "DateValidator.h"
+#include "DateTimeField.h"
 
 int main() {
-    IntegerValidator validator;
+    DateValidator dateValidator;
+    DateField dateField(&dateValidator);
 
-    IntegerField integer(&validator);
-    integer = 67;
-    integer = "23";
-    validator.check("34");
+    dateField = "01-02-0004";
 
-    auto s = integer.stringify();
+    auto s = dateField.stringify();
+    std::cout << s << std::endl;
 
-    auto size = sizeof(IntegerField);
+    auto size = sizeof(DateTime);
     std::cout << size << std::endl;
 
     return 0;

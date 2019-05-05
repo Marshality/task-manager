@@ -9,10 +9,11 @@
 
 struct Text : public Char {};
 
-class TextField : public Field<Text> {
-    using Base = Field<Text>;
+class TextField : public Field<TextField> {
+    using Base = Field<TextField>;
 
 public:
+    using Base::Base;
     using Base::operator=;
 };
 

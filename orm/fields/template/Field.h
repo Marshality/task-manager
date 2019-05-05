@@ -11,7 +11,7 @@
 template <typename Type>
 class Field {
 public:
-    Field(Validator<Type>* _validator) : validator(_validator) {}
+    explicit Field(Validator<Type>* _validator) : validator(_validator) {}
 
     Field& operator=(const std::string& _data) {
         validator->pass(_data, &data);
