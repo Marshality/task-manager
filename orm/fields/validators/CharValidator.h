@@ -15,6 +15,7 @@ public:
             throw "Exceeds max length";
         }
 
+        // Writing data to field
         if (_field) {
             auto field = dynamic_cast<CharField*>(_field);
             field->data = string;

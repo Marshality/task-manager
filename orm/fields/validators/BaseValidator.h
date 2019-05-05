@@ -15,6 +15,10 @@ public:
 
     // Polymorphic that validates input and validated passes data into field (if sent)
     virtual void pass(const std::string& string, BaseField* field) const = 0;
+
+    void check(const std::string& string) const {
+        pass(string, nullptr);
+    }
 };
 
 #endif //ORM_BASEVALIDATOR_H

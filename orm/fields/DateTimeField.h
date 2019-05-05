@@ -6,14 +6,23 @@
 #define ORM_DATETIMEFIELD_H
 
 #include "DateField.h"
+#include "TimeField.h"
 
-class DateTimeField : public DateField {
+class DateTimeField : public DateField, public TimeField {
 public:
+    using BaseField::operator=;
+
+    explicit DateTimeField(BaseValidator* _validator) :
+        BaseField(_validator),
+        DateField(_validator),
+        TimeField(_validator) {}
+
+    std::string stringify() const override {
+
+    }
 
 private:
-    unsigned char hour = 0;
-    unsigned char minute = 0;
-    unsigned char second = 0;
+    friend class DateTimeValidator;
 };
 
 #endif //ORM_DATETIMEFIELD_H

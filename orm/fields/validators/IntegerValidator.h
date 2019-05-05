@@ -22,6 +22,7 @@ public:
             throw "Met unacceptable symbols";
         }
 
+        // Writing data to field
         if (_field) {
             auto field = dynamic_cast<IntegerField*>(_field);
             field->data = temp;

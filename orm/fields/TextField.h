@@ -5,28 +5,14 @@
 #ifndef ORM_TEXTFIELD_H
 #define ORM_TEXTFIELD_H
 
-#include "BaseField.h"
+#include "CharField.h"
 
-class TextField : public BaseField {
+class TextField : public virtual CharField {
 public:
-    explicit TextField(BaseValidator* _validator) : BaseField::BaseField(_validator) {}
-
-    inline TextField& operator=(const std::string& _data) override {
-        pass(_data);
-        return *this;
-    }
-
-    inline std::string stringify() const override {
-        return data;
-    }
+    using CharField::BaseField;
+    using BaseField::operator=;
 
 protected:
-    std::string data;
-
-    void pass(const std::string& string) override {
-        validator->pass(string, this);
-    }
-
     friend class TextValidator;
 };
 

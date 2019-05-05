@@ -7,16 +7,12 @@
 
 #include "BaseField.h"
 
-class DateField : public BaseField {
+class DateField : public virtual BaseField {
 public:
-    DateField(BaseValidator* _validator) : BaseField::BaseField(_validator) {}
+    using BaseField::BaseField;
+    using BaseField::operator=;
 
-    inline DateField& operator=(const std::string& _data) override {
-        pass(_data);
-        return *this;
-    }
-
-    inline std::string stringify() const override {
+    std::string stringify() const override {
         return std::to_string(day) + '-' + std::to_string(month) + '-' + std::to_string(year);
     }
 
@@ -24,10 +20,6 @@ protected:
     unsigned short year = 0;
     unsigned char month = 0;
     unsigned char day = 0;
-
-    inline void pass(const std::string& string) override {
-        validator->pass(string, this);
-    }
 
     friend class DateValidator;
 };

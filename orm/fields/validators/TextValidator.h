@@ -11,6 +11,7 @@
 class TextValidator : public BaseValidator {
 public:
     void pass(const std::string& string, BaseField* _field) const override {
+        // Writing data to field
         if (_field) {
             auto field = dynamic_cast<TextField*>(_field);
             field->data = string;
