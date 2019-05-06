@@ -7,12 +7,28 @@
 
 #include "BaseField.h"
 
+<<<<<<< HEAD
 struct Date : public BaseData {
+=======
+class DateField : public BaseField {
+public:
+    inline DateField& operator=(const std::string& _data) override {
+        pass(_data);
+        return *this;
+    }
+
+    inline std::string stringify() const override {
+        return std::to_string(day) + '-' + std::to_string(month) + '-' + std::to_string(year);
+    }
+
+protected:
+>>>>>>> main_logic
     unsigned short year = 0;
     unsigned char month = 0;
     unsigned char day = 0;
 };
 
+<<<<<<< HEAD
 class DateField : public BaseField {
 public:
     using BaseField::BaseField;
@@ -25,6 +41,12 @@ public:
 protected:
     Date data;
 
+=======
+    inline void pass(const std::string& string) override {
+        validator->pass(string, this);
+    }
+
+>>>>>>> main_logic
     friend class DateValidator;
 };
 
