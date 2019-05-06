@@ -7,6 +7,7 @@
 
 #include <libpq-fe.h>
 #include <string>
+#include "PGException.h"
 
 #include "Cursor.h"
 
@@ -17,7 +18,13 @@ public:
 
     bool isActive() const { return PQstatus(connection) == CONNECTION_OK; }
 
-    Cursor execute(std::string&& query) const;
+    Cursor execute(const std::string& query) const {
+    	if (!isActive()) {
+    		throw PGException(PQerrorMessage(connection));
+    	}
+
+    	return Cursor(PQexec(connection, query.c_str()));
+    }
 
 private:
     PGconn* connection;
