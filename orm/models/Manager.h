@@ -6,21 +6,28 @@
 #define ORM_MANAGER_H
 
 #include <string>
-#include "Meta.h"
+#include "Set.h"
+
 
 template <typename Object>
-class Model;
+class Meta;
 
 template <typename Object>
 class Manager {
 public:
     Manager();
-    ~Manager();
 
     Object get(const std::string& options) const;
+    Set<Object> filter(const std::string& options) const;
+
+    void update(const std::string& options) const;
+    void remove(const std::string& options) const;
+
+    void save(Object& model) const;
 
 private:
-    void save(Model<Object>& model) const;
+    Meta<Object> meta;
+
 };
 
 

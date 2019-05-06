@@ -7,10 +7,14 @@
 
 #include "Manager.h"
 
+
 template <typename Object>
 class Model {
 public:
-    void save();
+    void save() {
+        auto object = static_cast<Object&>(*this);
+        objects.save(object);
+    }
 
 protected:
     // Allowing this class construction only as a compound of derived class
@@ -18,19 +22,10 @@ protected:
 
     // Binding derived class with its default manager
     static Manager<Object> objects;
-
-    static std::unordered_map<std::string, BaseValidator*>* fields;
 };
 
 template <typename Object>
 Manager<Object> Model<Object>::objects = {};
 
-template <typename Object>
-std::unordered_map<std::string, BaseValidator*>* Model<Object>::fields = &Model<Object>::objects.metaInfo.fields;
-
-template <typename Object>
-void Model<Object>::save() {
-    objects.save(*this);
-}
 
 #endif //ORM_BASEOBJECT_H
