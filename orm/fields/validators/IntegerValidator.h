@@ -6,22 +6,26 @@
 #define ORM_INTEGERVALIDATOR_H
 
 #include "BaseValidator.h"
+#include "IntegerField.h"
 
 class IntegerValidator : public BaseValidator {
 public:
-    bool isValid(const std::string& string) const override {
-        if (string.empty()) {
-            return false;
-        }
-
-        if (!std::isdigit(string[0]) && string[0] != '-' && string[0] != '+') {
-            return false;
+    void pass(const std::string& string, BaseField* _field) override {
+        if (string.empty() && !std::isdigit(string[0]) && string[0] != '-' && string[0] != '+') {
+            throw "Not an integer";
         }
 
         char* endPtr;
-        std::strtoll(string.c_str(), &endPtr, 10);
+        auto temp = std::strtoll(string.c_str(), &endPtr, 10);
 
-        return (*endPtr == 0);
+        if (*endPtr != 0) {
+            throw "Met unacceptable symbols";
+        }
+
+        if (_field) {
+            auto field = dynamic_cast<IntegerField*>(_field);
+            field->data = temp;
+        }
     }
 };
 

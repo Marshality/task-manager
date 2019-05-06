@@ -6,11 +6,19 @@
 #define ORM_CHARVALIDATOR_H
 
 #include "BaseValidator.h"
+#include "CharField.h"
 
 class CharValidator : public BaseValidator {
 public:
-    bool isValid(const std::string& string) const override {
-        return string.length() <= maxLength;
+    void pass(const std::string& string, BaseField* _field) const {
+        if (string.length() > maxLength) {
+            throw "Exceeds max length";
+        }
+
+        if (_field) {
+            auto field = dynamic_cast<CharField*>(_field);
+            field->data = string;
+        }
     }
 
 private:

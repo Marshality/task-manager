@@ -6,17 +6,16 @@
 #define ORM_DATEFIELD_H
 
 #include "BaseField.h"
-#include "DateValidator.h"
 
 class DateField : public BaseField {
 public:
     inline DateField& operator=(const std::string& _data) override {
-        accept(_data);
+        pass(_data);
         return *this;
     }
 
     inline std::string stringify() const override {
-        return std::to_string(year) + '-' + std::to_string(month) + '-' + std::to_string(day);
+        return std::to_string(day) + '-' + std::to_string(month) + '-' + std::to_string(year);
     }
 
 protected:
@@ -24,31 +23,11 @@ protected:
     unsigned char month = 0;
     unsigned char day = 0;
 
-    void accept(const std::string& string) override {
-        if (string[4] != '-' || string[7] != '-' || string.length() != 10) {
-            throw "Wrong data format";
-        }
-
-        auto str = string.c_str();
-        year = (unsigned short) read(str);
-        month = (unsigned char) read(str + 5);
-        if (month < 1 || month > 12) {
-            throw "Invalid month value";
-        }
-
-        day = (unsigned char) read(str + 8);
+    inline void pass(const std::string& string) override {
+        validator->pass(string, this);
     }
 
-    int read(const char* str) {
-        char* endPtr;
-        auto result = std::strtol(str, &endPtr, 10);
-
-        if (endPtr == str || (*endPtr != '-' && *endPtr != 0)) {
-            throw "Invalid symbol found";
-        }
-
-        return (int) result;
-    }
+    friend class DateValidator;
 };
 
 #endif //ORM_DATEFIELD_H

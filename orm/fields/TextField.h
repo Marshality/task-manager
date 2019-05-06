@@ -9,8 +9,10 @@
 
 class TextField : public BaseField {
 public:
+    explicit TextField(BaseValidator* _validator) : BaseField::BaseField(_validator) {}
+
     inline TextField& operator=(const std::string& _data) override {
-        accept(_data);
+        pass(_data);
         return *this;
     }
 
@@ -21,7 +23,7 @@ public:
 protected:
     std::string data;
 
-    void accept(const std::string& string) override {
+    void pass(const std::string& string) override {
         data = string;
     }
 };

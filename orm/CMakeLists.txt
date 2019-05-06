@@ -3,7 +3,7 @@ project(orm)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(orm main.cpp models/Model.h models/managers/Manager-Impl.cpp fields/validators/CharValidator.h fields/DateTimeField.h fields/DateField.h fields/validators/DateValidator.h)
+add_executable(orm main.cpp models/Model.h models/managers/Manager-Impl.cpp fields/validators/CharValidator.h fields/DateTimeField.h fields/DateField.h fields/validators/DateValidator.h fields/Field.h fields/validators/Validator.h)
 
 #add_subdirectory(connection)
 #target_link_libraries(orm wrapperlib)

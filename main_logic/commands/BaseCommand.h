@@ -6,9 +6,9 @@
 #define PROJECT_BASECOMMAND_H
 
 
-class ICommand {
+class BaseCommand {
 public:
-    virtual ~ICommand() = default;
+    virtual ~BaseCommand() = default;
 
     virtual void execute() = 0;
 };

@@ -6,19 +6,19 @@
 #define ORM_INTEGERFIELD_H
 
 #include <string>
-
-#include "validators/IntegerValidator.h"
 #include "BaseField.h"
 
 class IntegerField : public BaseField {
 public:
+    explicit IntegerField(BaseValidator* _validator) : BaseField::BaseField(_validator) {}
+
     inline IntegerField& operator=(long long _data) {
         data = _data;
         return *this;
     }
 
     inline IntegerField& operator=(const std::string& _data) override {
-        accept(_data);
+        pass(_data);
         return *this;
     }
 
@@ -29,20 +29,11 @@ public:
 private:
     long long data = 0;
 
-    void accept(const std::string& string) override {
-        if (string.empty() && !std::isdigit(string[0]) && string[0] != '-' && string[0] != '+') {
-            throw "Not an integer";
-        }
-
-        char* endPtr;
-        auto temp = std::strtoll(string.c_str(), &endPtr, 10);
-
-        if (*endPtr != 0) {
-            throw "Met unacceptable symbols";
-        }
-
-        data = temp;
+    void pass(const std::string& string) override {
+        validator->pass(string, this);
     }
+
+    friend class IntegerValidator;
 };
 
 #endif //ORM_INTEGERFIELD_H
