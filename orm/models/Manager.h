@@ -15,20 +15,12 @@ template <typename Object>
 class Manager {
 public:
     Manager();
-    ~Manager() {
-        for (auto field : metaInfo.fields) {
-            delete field.second;
-        }
-    }
+    ~Manager();
 
     Object get(const std::string& options) const;
 
 private:
-    Meta metaInfo;
-
     void save(Model<Object>& model) const;
-
-    friend class Model<Object>;
 };
 
 

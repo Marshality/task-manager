@@ -8,7 +8,7 @@
 #include "BaseValidator.h"
 #include "TimeField.h"
 
-class TimeValidator : public BaseValidator {
+class TimeValidator : public virtual BaseValidator {
 public:
     void pass(const std::string& string, BaseField* _field) const override {
         if (string.length() != 8 || string[2] != ':' || string[5] != ':') {
@@ -24,9 +24,9 @@ public:
 
         if (_field) {
             auto field = dynamic_cast<TimeField*>(_field);
-            field->hour = static_cast<unsigned char>(hour);
-            field->minute = static_cast<unsigned char>(minute);
-            field->second = static_cast<unsigned char>(second);
+            field->data.hour = static_cast<unsigned char>(hour);
+            field->data.minute = static_cast<unsigned char>(minute);
+            field->data.second = static_cast<unsigned char>(second);
         }
     }
 

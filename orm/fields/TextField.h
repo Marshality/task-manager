@@ -5,14 +5,16 @@
 #ifndef ORM_TEXTFIELD_H
 #define ORM_TEXTFIELD_H
 
-#include "CharField.h"
+#include "BaseField.h"
 
-class TextField : public virtual CharField {
+class TextField : public BaseField {
 public:
-    using CharField::BaseField;
+    using BaseField::BaseField;
     using BaseField::operator=;
 
 protected:
+
+
     friend class TextValidator;
 };
 

@@ -7,19 +7,23 @@
 
 #include "BaseField.h"
 
+struct Time : BaseData {
+    unsigned char hour = 0;
+    unsigned char minute = 0;
+    unsigned char second = 0;
+};
+
 class TimeField : public BaseField {
 public:
     using BaseField::BaseField;
     using BaseField::operator=;
 
     std::string stringify() const override {
-
+        return std::to_string(data.hour) + ':' + std::to_string(data.minute) + ':' + std::to_string(data.second);
     }
 
 protected:
-    unsigned char hour = 0;
-    unsigned char minute = 0;
-    unsigned char second = 0;
+    Time data;
 
     friend class TimeValidator;
 };

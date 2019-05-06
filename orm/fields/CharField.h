@@ -7,6 +7,10 @@
 
 #include "BaseField.h"
 
+struct Char {
+    std::string data;
+};
+
 class CharField : public BaseField {
 public:
     using BaseField::BaseField;
@@ -16,8 +20,8 @@ public:
         return data;
     }
 
-protected:
-    std::string data;
+private:
+    Char data;
 
     friend class CharValidator;
 };

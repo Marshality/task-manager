@@ -1,11 +1,13 @@
 #include <iostream>
-#include "TimeValidator.h"
-#include "DateTimeValidator.h.h"
-#include "TextValidator.h"
+#include "DateTimeValidator.h"
 
 int main() {
-    Da
-    DateTimeField dateTimeField;
+    DateTimeValidator dateTimeValidator;
+    DateTimeField dateTimeField(&dateTimeValidator);
+
+    dateTimeField = "23-02-1999 03:14:56";
+
+    std::cout << dateTimeField.stringify() << std::endl;
 
     auto size = sizeof(DateTimeField);
     std::cout << size << std::endl;

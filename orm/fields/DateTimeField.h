@@ -8,20 +8,24 @@
 #include "DateField.h"
 #include "TimeField.h"
 
-class DateTimeField : public DateField, public TimeField {
+class DateTimeField : public BaseField {
 public:
-    using BaseField::operator=;
+    using DateField::BaseField::operator=;
 
     explicit DateTimeField(BaseValidator* _validator) :
         BaseField(_validator),
-        DateField(_validator),
-        TimeField(_validator) {}
+        dateField(_validator),
+        timeField(_validator) {}
+
 
     std::string stringify() const override {
-
+        return dateField.stringify() + ' ' + timeField.stringify();
     }
 
 private:
+    DateField dateField;
+    TimeField timeField;
+
     friend class DateTimeValidator;
 };
 

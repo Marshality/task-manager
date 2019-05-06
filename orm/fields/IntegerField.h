@@ -8,6 +8,10 @@
 #include <string>
 #include "BaseField.h"
 
+struct Integer : public BaseData {
+    long long value = 0;
+};
+
 class IntegerField : public BaseField {
 public:
     using BaseField::BaseField;
@@ -23,7 +27,7 @@ public:
     }
 
 private:
-    long long data = 0;
+    Integer data;
 
     friend class IntegerValidator;
 };

@@ -10,5 +10,3 @@ Task::Task() :
         creation_date(fields->find("title")->second),
         deadline(fields->find("description")->second)
 {
-
-}

@@ -8,7 +8,7 @@
 #include "BaseValidator.h"
 #include "DateField.h"
 
-class DateValidator : public BaseValidator {
+class DateValidator : public virtual BaseValidator {
 public:
     void pass(const std::string& string, BaseField* _field) const override {
         if (string.length() != 10 || string[2] != '-' || string[5] != '-') {
@@ -26,9 +26,9 @@ public:
         // Writing data to field
         if (_field) {
             auto field = dynamic_cast<DateField*>(_field);
-            field->day = (unsigned char) day;
-            field->month = (unsigned char) month;
-            field->year = (unsigned short) year;
+            field->data.day = (unsigned char) day;
+            field->data.month = (unsigned char) month;
+            field->data.year = (unsigned short) year;
         }
     }
 

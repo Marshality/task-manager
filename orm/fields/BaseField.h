@@ -8,6 +8,8 @@
 #include <string>
 #include "BaseValidator.h"
 
+struct BaseData {};
+
 class BaseField {
 public:
     explicit BaseField(BaseValidator* _validator) : validator(_validator) {}
