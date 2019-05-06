@@ -10,11 +10,7 @@
 
 class IntegerValidator : public BaseValidator {
 public:
-<<<<<<< HEAD
     void pass(const std::string& string, BaseField* _field) const override {
-=======
-    void pass(const std::string& string, BaseField* _field) override {
->>>>>>> main_logic
         if (string.empty() && !std::isdigit(string[0]) && string[0] != '-' && string[0] != '+') {
             throw "Not an integer";
         }
@@ -26,10 +22,7 @@ public:
             throw "Met unacceptable symbols";
         }
 
-<<<<<<< HEAD
         // Writing data to field
-=======
->>>>>>> main_logic
         if (_field) {
             auto field = dynamic_cast<IntegerField*>(_field);
             field->data = temp;

@@ -10,20 +10,14 @@
 
 class DateValidator : public virtual BaseValidator {
 public:
-<<<<<<< HEAD
     void pass(const std::string& string, BaseField* _field) const override {
         if (string.length() != 10 || string[2] != '-' || string[5] != '-') {
-=======
-    void pass(const std::string& string, BaseField* _field) override {
-        if (string[2] != '-' || string[5] != '-' || string.length() != 10) {
->>>>>>> main_logic
             throw "Wrong data format";
         }
 
         auto str = string.c_str();
 
         int day = read(str);
-<<<<<<< HEAD
         int month = read(str + 3);
         int year = read(str + 6);
 
@@ -74,34 +68,6 @@ protected:
 
     bool isLeapYear(int year) const {
         return year % 4 == 0;
-=======
-
-        int month = read(str + 3);
-        if (month < 1 || month > 12) {
-            throw "Invalid month value";
-        }
-
-        int year = (unsigned short) read(str + 6);
-
-        if (_field) {
-            auto field = dynamic_cast<DateField*>(_field);
-            field->day = (unsigned char) day;
-            field->month = (unsigned char) month;
-            field->year = (unsigned short) year;
-        }
-    }
-
-private:
-    int read(const char* str) {
-        char* endPtr;
-        auto result = std::strtol(str, &endPtr, 10);
-
-        if (endPtr == str || (*endPtr != '-' && *endPtr != 0)) {
-            throw "Invalid symbol found";
-        }
-
-        return (int) result;
->>>>>>> main_logic
     }
 };
 

@@ -10,19 +10,12 @@
 
 class CharValidator : public BaseValidator {
 public:
-<<<<<<< HEAD
     void pass(const std::string& string, BaseField* _field) const override {
-=======
-    void pass(const std::string& string, BaseField* _field) const {
->>>>>>> main_logic
         if (string.length() > maxLength) {
             throw "Exceeds max length";
         }
 
-<<<<<<< HEAD
         // Writing data to field
-=======
->>>>>>> main_logic
         if (_field) {
             auto field = dynamic_cast<CharField*>(_field);
             field->data = string;
