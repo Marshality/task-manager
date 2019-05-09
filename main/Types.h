@@ -9,7 +9,9 @@
 #include <unordered_set>
 #include <unordered_map>
 
-using set = std::unordered_set<std::string>;
-using map = std::unordered_map<std::string, std::string>;
+
+using string_set = std::unordered_set<std::string>;
+using string_map = std::unordered_map<std::string, std::string>;
+
 
 #endif //MAIN_TYPES_H

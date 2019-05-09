@@ -17,7 +17,7 @@ public:
     using BaseField::operator=;
 
     std::string stringify() const override {
-        return data;
+        return data.data;
     }
 
 private:

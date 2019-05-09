@@ -18,12 +18,12 @@ public:
         // Writing data to field
         if (_field) {
             auto field = dynamic_cast<CharField*>(_field);
-            field->data = string;
+            field->data.data = string;
         }
     }
 
 private:
-    unsigned long maxLength;
+    unsigned long maxLength = 128;
 };
 
 #endif //ORM_CHARVALIDATOR_H

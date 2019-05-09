@@ -17,6 +17,8 @@ public:
             field->data = string;
         }
     }
+
+    BaseValidator::
 };
 
 #endif //ORM_TEXTVALIDATOR_H

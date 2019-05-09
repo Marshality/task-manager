@@ -1,5 +1,6 @@
 //
 // Created by Святослав Кряжев on 06.05.2019.
+// featured by Gulaya Marseille
 //
 
 #ifndef MAIN_REQUEST_H

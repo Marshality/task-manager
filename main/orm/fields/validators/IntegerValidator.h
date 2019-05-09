@@ -25,9 +25,13 @@ public:
         // Writing data to field
         if (_field) {
             auto field = dynamic_cast<IntegerField*>(_field);
-            field->data = temp;
+            field->data.value = temp;
         }
     }
+
+    bool needsScreening() override {
+        return false;
+    };
 };
 
 #endif //ORM_INTEGERVALIDATOR_H

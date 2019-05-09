@@ -7,13 +7,21 @@
 
 #include "BaseField.h"
 
+struct Text {
+	std::string data;
+};
+
 class TextField : public BaseField {
 public:
     using BaseField::BaseField;
     using BaseField::operator=;
 
-protected:
+    std::string stringify() const override {
+    	return data.data;
+    }
 
+protected:
+	Text data;
 
     friend class TextValidator;
 };

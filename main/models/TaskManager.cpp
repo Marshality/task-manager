@@ -5,19 +5,13 @@
 #include "Manager.h"
 #include "Task.h"
 
-template <>
-Task Manager<Task>::get(const map& kwargs) const {
-    return Task();
-}
 
 template <>
-void Manager<Task>::save(Model<Task>& model) const {
-    auto task = static_cast<Task&>(model);
-
-    std::string statement;
-    statement += "title=";
-    statement += task.title;
-    statement += "description=";
-    statement += task.description;
-    statement +=
+void Manager<Task>::save(Task& task) const {
+    std::string statement = "(";
+    statement += task.title.stringify();
+    statement += task.description.stringify();
+    statement += task.creation_date.stringify();
+    statement += task.deadline.stringify();
+    statement += ')';
 }

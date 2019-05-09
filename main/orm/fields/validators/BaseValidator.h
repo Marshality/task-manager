@@ -19,6 +19,10 @@ public:
     void check(const std::string& string) const {
         pass(string, nullptr);
     }
+
+    virtual bool needsScreening() {
+        return true;
+    }
 };
 
 #endif //ORM_BASEVALIDATOR_H

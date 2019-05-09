@@ -12,6 +12,7 @@ struct BaseData {};
 
 class BaseField {
 public:
+    BaseField() = default;
     explicit BaseField(BaseValidator* _validator) : validator(_validator) {}
 
     // Operator accepting data in string form
