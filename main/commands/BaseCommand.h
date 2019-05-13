@@ -1,5 +1,5 @@
 //
-// Created by Святослав Кряжев on 06.05.2019.
+// Created by Marseille Gulaya ft. Святослав Кряжев on 06.05.2019.
 //
 
 #ifndef MAIN_BASECOMMAND_H
