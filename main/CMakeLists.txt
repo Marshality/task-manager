@@ -3,16 +3,21 @@ project(main)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(main main.cpp Controller.cpp models/TaskManager.cpp)
+find_package(PostgreSQL REQUIRED)
+link_libraries(${PostgreSQL_LIBRARIES})
+
+add_executable(main
+        main.cpp
+        Controller.cpp
+        Storage.cpp
+        objects/task/Task.cpp
+        objects/project/Project.cpp
+        objects/user/User.cpp)
 
 target_include_directories(main PRIVATE .)
-target_include_directories(main PRIVATE models)
+target_include_directories(main PRIVATE objects)
 target_include_directories(main PRIVATE commands)
+target_include_directories(main PRIVATE connection)
+target_include_directories(main PRIVATE connection/exceptions)
 
-target_include_directories(main PRIVATE orm/.)
-target_include_directories(main PRIVATE orm/models)
-target_include_directories(main PRIVATE orm/models/managers)
-target_include_directories(main PRIVATE orm/models/managers/meta)
-target_include_directories(main PRIVATE orm/fields)
-target_include_directories(main PRIVATE orm/fields/validators)
 

@@ -6,10 +6,7 @@
 #ifndef MAIN_REQUEST_H
 #define MAIN_REQUEST_H
 
-#include <string>
-#include <unordered_map>
-
-using map = std::unordered_map<std::string, std::string>;
+#include "Types.h"
 
 struct Request {
     enum RequestType {
@@ -17,7 +14,7 @@ struct Request {
         POST
     } type;
 
-    map options;
+    string_map options;
 };
 
 #endif //MAIN_REQUEST_H

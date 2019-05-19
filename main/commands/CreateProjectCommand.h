@@ -13,7 +13,11 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() const override {
+        // query to db
 
+        // generating context
+
+        // render
     }
 };
 

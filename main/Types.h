@@ -12,6 +12,7 @@
 
 using string_set = std::unordered_set<std::string>;
 using string_map = std::unordered_map<std::string, std::string>;
+using key_value = std::pair<std::string, std::string>;
 
 
 #endif //MAIN_TYPES_H

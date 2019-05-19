@@ -5,33 +5,32 @@
 #ifndef CONNECTION_INDEXEXCEEDSEXCEPTION_H
 #define CONNECTION_INDEXEXCEEDSEXCEPTION_H
 
-#include <exception>
 #include <string>
+#include <exception>
 
 class CursorIndexExceedsException : public std::exception {
 public:
-    explicit CursorIndexExceedsException(int _index, int _columnCount);
+    explicit CursorIndexExceedsException(int _index, int _fieldsCount) noexcept;
 
     const char* what() const noexcept override;
 
 private:
     int index;
-    int columnCount;
-
-    std::string request;
+    int fieldsCount;
 };
 
-CursorIndexExceedsException::CursorIndexExceedsException(int _index, int _columnCount) :
+CursorIndexExceedsException::CursorIndexExceedsException(int _index, int _fieldsCount) noexcept :
         index(_index),
-        columnCount(_columnCount)
+        fieldsCount(_fieldsCount)
 {
-    request += std::string("CURSOR ERROR: index exceeds column count\n")
-            + "Allowed index interval: (0, " + std::to_string(columnCount - 1) + ")\n"
-            + "Requested index: " + std::to_string(index);
 }
 
 const char* CursorIndexExceedsException::what() const noexcept {
-    return request.c_str();
+    auto errorMessage = std::string("CURSOR ERROR: index exceeds fields count\n")
+                    + "Allowed index interval: (0, " + std::to_string(fieldsCount - 1) + ")\n"
+                    + "Requested index: " + std::to_string(index);
+
+    return errorMessage.c_str();
 }
 
 #endif //CONNECTION_INDEXEXCEEDSEXCEPTION_H

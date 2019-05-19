@@ -2,33 +2,36 @@
 // Created by Святослав Кряжев on 19.04.2019.
 //
 
-#ifndef ORM_MANAGER_H
-#define ORM_MANAGER_H
+#ifndef PSQL_CONNECTION_H
+#define PSQL_CONNECTION_H
 
 #include <libpq-fe.h>
 #include <string>
-#include "PGException.h"
 
-#include "Cursor.h"
+#include "ResultSet.h"
+#include "exceptions/PGException.h"
+
 
 class Connection {
 public:
     explicit Connection(const char* config) : connection(PQconnectdb(config)) {}
     ~Connection() { PQfinish(connection); }
 
-    bool isActive() const { return PQstatus(connection) == CONNECTION_OK; }
+    bool isActive() const { return PQstatus(connection) == ConnStatusType::CONNECTION_OK; }
 
-    Cursor execute(const std::string& query) const {
-    	if (!isActive()) {
-    		throw PGException(PQerrorMessage(connection));
-    	}
+    std::shared_ptr<ResultSet> execute(const std::string& query) const {
+        if (!isActive()) {
+            throw PGException(PQerrorMessage(connection));
+        }
 
-    	return Cursor(PQexec(connection, query.c_str()));
+        return std::make_shared<ResultSet>(PQexec(connection, query.c_str()));
     }
+
+//    ResultSet executeWithParams(const std::string& query, const char* const* params) const;
 
 private:
     PGconn* connection;
 };
 
 
-#endif //ORM_MANAGER_H
+#endif //PSQL_CONNECTION_H

@@ -8,8 +8,15 @@ link_libraries(${PostgreSQL_LIBRARIES})
 
 add_executable(connection
         main.cpp
-        Connection.cpp
-        Cursor.cpp
- )
+        BaseSet.h)
 
-target_include_directories(connection PRIVATE ./exceptions)
+
+
+#target_include_directories(connection PRIVATE ./exceptions)
+
+#include(exceptions/CMakeLists.txt)
+#
+#set(CONNECTION_HEADERS
+#        Connection.h
+#        Cursor.h
+#        ${CONNECTION_EXCEPTIONS_HEADERS})

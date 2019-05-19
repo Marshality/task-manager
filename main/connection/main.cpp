@@ -9,7 +9,7 @@ int main() {
     try {
         auto cursor = connection.execute("SELECT * FROM info;");
         while (cursor.next()) {
-            std::cout << cursor.get(-1) << " " << cursor.get(1) << std::endl;
+            std::cout << cursor.get(0) << " " << cursor.get(1) << std::endl;
         }
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
