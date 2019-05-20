@@ -3,25 +3,27 @@
 //
 
 #include "Meta.h"
-#include "Project.h"
+#include "Task.h"
 
 
 template <>
-Meta<Project>::Meta() :
+Meta<Task>::Meta() :
         fieldsNames {
                 "id",
-                "owner_id",
+                "user_id",
+                "project_id",
                 "title",
                 "description",
-                "creation_date"
+                "creation_date",
+                "deadline"
         } {}
 
 template <>
-const char* Meta<Project>::tableName() const {
-    return "projects";
+const char* Meta<Task>::tableName() const {
+    return "tasks";
 }
 
 template <>
-bool Meta<Project>::hasField(const std::string& fieldName) const {
+bool Meta<Task>::hasField(const std::string& fieldName) const {
     return fieldsNames.find(fieldName) != fieldsNames.end();
 }

@@ -27,7 +27,23 @@ public:
         return std::make_shared<ResultSet>(PQexec(connection, query.c_str()));
     }
 
-//    ResultSet executeWithParams(const std::string& query, const char* const* params) const;
+    std::shared_ptr<ResultSet> executeWithParams(const std::string& query, const char** params, int argsCount) const {
+        if (!isActive()) {
+            throw PGException(PQerrorMessage(connection));
+        }
+
+        return std::make_shared<ResultSet>(
+                PQexecParams(
+                connection,
+                query.c_str(),
+                argsCount,
+                NULL,
+                params,
+                NULL,
+                NULL,
+                0
+                ));
+    }
 
 private:
     PGconn* connection;

@@ -17,11 +17,8 @@ public:
     void bypass(const handlerFunc& handle) const {
         int count = set->getObjectsCount();
 
-        Object object(set, 0);
-        handle(object);
-
-        for (int i = 1; i < count; ++i) {
-            setIndexToObject(object, i);
+        for (int i = 0; i < count; ++i) {
+            Object object(set, i);
             handle(object);
         }
     }

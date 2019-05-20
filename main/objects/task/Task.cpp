@@ -42,6 +42,9 @@ const char* Task::deadline() const {
 
 std::shared_ptr<User> Task::user() {
     if (!userInstance) {
+        userInstance = User::getOne({
+            {"id", user_id()}
+        });
     }
 
     return userInstance;
@@ -49,7 +52,9 @@ std::shared_ptr<User> Task::user() {
 
 std::shared_ptr<Project> Task::project() {
     if (!projectInstance) {
-//        projectInstance = Project::getOne();
+        projectInstance = Project::getOne({
+            {"id", project_id()}
+        });
     }
 
     return projectInstance;

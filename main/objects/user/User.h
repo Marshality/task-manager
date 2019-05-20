@@ -5,15 +5,15 @@
 #ifndef MAIN_USER_H
 #define MAIN_USER_H
 
-#include "StorageQuickAccess.h"
+#include "StorageAccess.h"
 #include "BaseObject.h"
 #include "Set.h"
 
 
-class ProjectSet;
-class TaskSet;
+class Project;
+class Task;
 
-class User : public BaseObject, public StorageQuickAccess<User> {
+class User : public BaseObject, public StorageAccess<User> {
 public:
     using BaseObject::BaseObject;
 
@@ -25,12 +25,12 @@ public:
     const char* avatar() const;
 
     // Relative fields
-    std::shared_ptr<ProjectSet> projects();
-    std::shared_ptr<TaskSet> tasks();
+    std::shared_ptr<Set<Project>> projects();
+    std::shared_ptr<Set<Task>> tasks();
 
 private:
-    std::shared_ptr<ProjectSet> projectsInstance;
-    std::shared_ptr<TaskSet> tasksInstance;
+    std::shared_ptr<Set<Project>> projectsInstance;
+    std::shared_ptr<Set<Task>> tasksInstance;
 };
 
 

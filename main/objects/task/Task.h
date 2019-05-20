@@ -6,14 +6,14 @@
 #define MAIN_TASK_H
 
 #include "BaseObject.h"
-#include "StorageQuickAccess.h"
+#include "StorageAccess.h"
 #include "Set.h"
 
 
 class Project;
 class User;
 
-class Task : public BaseObject, public StorageQuickAccess<Task> {
+class Task : public BaseObject, public StorageAccess<Task> {
 public:
     using BaseObject::BaseObject;
 
@@ -31,8 +31,8 @@ public:
     std::shared_ptr<Project> project();
 
 private:
-    std::shared_ptr<Project> projectInstance = nullptr;
     std::shared_ptr<User> userInstance = nullptr;
+    std::shared_ptr<Project> projectInstance = nullptr;
 };
 
 
