@@ -5,14 +5,25 @@
 #ifndef ORM_CHARFIELD_H
 #define ORM_CHARFIELD_H
 
-#include <string>
+#include "BaseField.h"
 
-class CharField {
+struct Char {
+    std::string data;
+};
+
+class CharField : public BaseField {
 public:
-    CharField& operator=(const std::string& _data);
+    using BaseField::BaseField;
+    using BaseField::operator=;
+
+    std::string stringify() const override {
+        return data.data;
+    }
 
 private:
-    std::string data;
+    Char data;
+
+    friend class CharValidator;
 };
 
 #endif //ORM_CHARFIELD_H

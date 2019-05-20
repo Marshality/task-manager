@@ -1,13 +1,17 @@
 #include <iostream>
-#include <vector>
-#include "fields/IntegerField.h"
+#include "DateTimeValidator.h"
+#include "Set.h"
 
-int main()
-{
-    IntegerField f;
+int main() {
+    DateTimeValidator dateTimeValidator;
+    DateTimeField dateTimeField(&dateTimeValidator);
 
-    f = 2;
-    f = "123";
+    dateTimeField = "23-02-1999 03:14:56";
 
+    std::cout << dateTimeField.stringify() << std::endl;
+
+    auto size = sizeof(DateTimeField);
+
+    std::cout << size << std::endl;
     return 0;
 }

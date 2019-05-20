@@ -9,7 +9,7 @@ link_libraries(${PostgreSQL_LIBRARIES})
 add_executable(connection
         main.cpp
         Connection.cpp
-        Connection.h
         Cursor.cpp
-        Cursor.h
-        )
+ )
+
+target_include_directories(connection PRIVATE ./exceptions)
