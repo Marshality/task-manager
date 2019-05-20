@@ -1,0 +1,87 @@
+<style>
+    td {padding: 10px 15px;}
+    .card {
+        display: block;
+        width: 100%;
+        float: left
+    }
+
+    @media only screen and (min-width: 450px) {
+        .card {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .card {
+            width: 33.333%;
+        }
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .card {
+            width: 25%;
+        }
+    }
+    .product {
+        display: block;
+        border: 2px solid #ccf7ee;
+        border-radius: 3px;
+        position: relative;
+        background: #fff;
+        margin: 0 20px 20px 0;
+        padding: 20px;
+        text-decoration: none;
+        color: #474747;
+        z-index: 0;
+        height: 200px;
+    }
+
+    .product p {
+        position: relative;
+        margin: 20px 0 0 0;
+        margin-top: 10px;
+        font-size: 1em;
+        line-height: 1.4em;
+        height: 4.2em;
+        overflow: hidden;
+        color: gray;
+    }
+
+    .product p:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 4.2em;
+        height: 1.6em;
+        background: linear-gradient(to left top, #fff, rgba(255, 255, 255, 0));
+    }
+
+    .product a {
+        margin-left: 60%;
+    }
+
+    .product:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+</style>
+
+
+
+<div style="margin: 20px;">
+    <ul style="padding-right: 20px;">
+        {{ #projects }}
+        <li class="card">
+            <a href="projectOut.html" class="product">
+                <h3>{{ project.title }}</h3>
+                <div>Создатель: {{ project.name }} {{ project.surname }}</div>
+                <div>Дата создания: {{ project.creation_date}}</div>
+                <p>{{ project.description }}</p>
+            </a>
+        </li>
+        {{ /projects }}
+    </ul>
+</div>
