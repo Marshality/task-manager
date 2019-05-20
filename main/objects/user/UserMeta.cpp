@@ -8,6 +8,7 @@
 
 template <>
 Meta<User>::Meta() :
+        tableName_("users"),
         fieldsNames {
                 "id",
                 "name",
@@ -15,13 +16,3 @@ Meta<User>::Meta() :
                 "birth_date",
                 "avatar"
         } {}
-
-template <>
-const char* Meta<User>::tableName() const {
-    return "users";
-}
-
-template <>
-bool Meta<User>::hasField(const std::string& fieldName) const {
-    return fieldsNames.find(fieldName) != fieldsNames.end();
-}

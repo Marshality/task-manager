@@ -8,6 +8,7 @@
 
 template <>
 Meta<Project>::Meta() :
+        tableName_("projects"),
         fieldsNames {
                 "id",
                 "owner_id",
@@ -15,13 +16,3 @@ Meta<Project>::Meta() :
                 "description",
                 "creation_date"
         } {}
-
-template <>
-const char* Meta<Project>::tableName() const {
-    return "projects";
-}
-
-template <>
-bool Meta<Project>::hasField(const std::string& fieldName) const {
-    return fieldsNames.find(fieldName) != fieldsNames.end();
-}

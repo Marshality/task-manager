@@ -12,10 +12,16 @@ class Meta {
 public:
     Meta();
 
-    const char* tableName() const;
-    bool hasField(const std::string& fieldName) const;
+    const std::string& tableName() const {
+        return tableName_;
+    }
+
+    bool hasField(const std::string& fieldName) const {
+        fieldsNames.find(fieldName) != fieldsNames.end();
+    }
 
 private:
+    std::string tableName_;
     string_set fieldsNames;
 };
 

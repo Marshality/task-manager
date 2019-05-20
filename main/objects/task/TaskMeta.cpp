@@ -8,6 +8,7 @@
 
 template <>
 Meta<Task>::Meta() :
+        tableName_("tasks"),
         fieldsNames {
                 "id",
                 "user_id",
@@ -17,13 +18,3 @@ Meta<Task>::Meta() :
                 "creation_date",
                 "deadline"
         } {}
-
-template <>
-const char* Meta<Task>::tableName() const {
-    return "tasks";
-}
-
-template <>
-bool Meta<Task>::hasField(const std::string& fieldName) const {
-    return fieldsNames.find(fieldName) != fieldsNames.end();
-}
