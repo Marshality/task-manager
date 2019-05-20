@@ -1,0 +1,108 @@
+<style>
+    .btn {
+        margin-top: 5px;
+        width: auto;
+        height: 30px;
+        background-color: #ccf7ee;
+        border: none;
+        font-size: medium;
+    }
+    .btn:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    td {padding: 10px 15px;}
+    .card {
+        display: block;
+        width: 100%;
+        float: left
+    }
+
+    @media only screen and (min-width: 450px) {
+        .card {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .card {
+            width: 33.333%;
+        }
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .card {
+            width: 25%;
+        }
+    }
+    .product {
+        display: block;
+        border: 2px solid #ccf7ee;
+        border-radius: 3px;
+        position: relative;
+        background: #fff;
+        margin: 0 20px 20px 0;
+        padding: 20px;
+        text-decoration: none;
+        color: #474747;
+        z-index: 0;
+        height: 200px;
+    }
+
+    .product p {
+        position: relative;
+        margin: 20px 0 0 0;
+        margin-top: 10px;
+        font-size: 1em;
+        line-height: 1.4em;
+        height: 4.2em;
+        overflow: hidden;
+        color: gray;
+    }
+
+    .product a {
+        margin-left: 60%;
+    }
+
+    .product:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+</style>
+
+<div style="margin: 20px">
+    <form action="projectListOut.html">
+        <button class="btn" type="submit">Назад к проектам</button>
+    </form>
+
+    <h1>{{ title }}</h1>
+
+    <p style="color: grey;"> {{ description }} </p>
+
+    <table>
+        <tr>
+            <td>Создатель:</td>
+            <td>{{ name }} {{ surname }}</td>
+        </tr>
+        <tr>
+            <td >Проект создан:</td>
+            <td>{{ creation_date }}</td>
+        </tr>
+    </table>
+
+    <ul style="padding-right: 20px;">
+    {{ #tasks }}
+        <li class="card">
+            <a href="taskOut.html" class="product">
+                <h3>{{ task.title }}</h3>
+                <div>Исполнитель: {{ task.name }} {{ task.surname }}</div>
+                <div>Срок выполнения: {{ task.deadline }}</div>
+                <p>{{ task.description }}</p>
+            </a>
+
+        </li>
+    {{ /tasks }}
+    </ul>
+
+</div>
