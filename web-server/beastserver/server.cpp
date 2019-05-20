@@ -120,23 +120,25 @@ void handleRequest(boost::beast::string_view docRoot, http::request<Body, http::
         path.append("index.html");
     }
 
-    // Attempt to open the file
-    boost::beast::error_code ec;
-    http::file_body::value_type body;
-    body.open(path.c_str(), boost::beast::file_mode::scan, ec);
+    http::string_body::value_type body;
 
-    // Handle the case where the file doesn't exist
-    if (ec == boost::system::errc::no_such_file_or_directory) {
-        return send(not_found(req.target()));
-    }
+    std::string test = "<!DOCTYPE html>\n"
+                       "<html lang=\"en\">\n"
+                       "<head>\n"
+                       "    <meta charset=\"UTF-8\">\n"
+                       "    <title>Title</title>\n"
+                       "</head>\n"
+                       "<body>\n"
+                       "text\n"
+                       "</body>\n"
+                       "</html>";
 
-    // Handle an unknown error
-    if (ec) {
-        return send(server_error(ec.message()));
+    for (auto& c : test) {
+        body.push_back(c);
     }
 
     // Cache the size since we need it after the move
-    auto const size = body.size();
+    auto const size = test.size();
 
     // Respond to HEAD request
     if (req.method() == http::verb::head) {
@@ -149,9 +151,9 @@ void handleRequest(boost::beast::string_view docRoot, http::request<Body, http::
     }
 
     // Respond to GET request
-    http::response<http::file_body> res{std::piecewise_construct,
-                                        std::make_tuple(std::move(body)),
-                                        std::make_tuple(http::status::ok, req.version())};
+    http::response<http::string_body> res{std::piecewise_construct,
+                                          std::make_tuple(std::move(body)),
+                                          std::make_tuple(http::status::ok, req.version())};
 
 
     res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
