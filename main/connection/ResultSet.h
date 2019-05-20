@@ -5,40 +5,21 @@
 #ifndef PSQL_CURSOR_H
 #define PSQL_CURSOR_H
 
-#include <libpq-fe.h>
-#include <iostream>
-//#include "exceptions/CursorIndexExceedsException.h"
 
+struct pg_result;
 
 class ResultSet {
 public:
-    explicit ResultSet(PGresult* _result) :
-    	result(_result),
-        objectsCount(PQntuples(_result)),
-        fieldsCount(PQnfields(_result))
-    {
-    }
+    explicit ResultSet(pg_result* _result);
+    ~ResultSet();
 
-    ~ResultSet() { PQclear(result); }
+    const char* get(int objectIndex, int fieldIndex) const;
 
-    const char* get(int objectIndex, int fieldIndex) const {
-//    	if (fieldIndex < 0 || fieldIndex >= fieldsCount) {
-//    		throw CursorIndexExceedsException(fieldIndex, fieldsCount);
-//    	}
-
-    	return PQgetvalue(result, objectIndex, fieldIndex);
-    }
-
-    int getObjectsCount() const {
-        return objectsCount;
-    }
-
-    int getFieldsCount() const {
-        return fieldsCount;
-    }
+    int getObjectsCount() const;
+    int getFieldsCount() const;
 
 private:
-    PGresult* result;
+    pg_result* result;
 
     const int objectsCount;
     const int fieldsCount;

@@ -5,6 +5,7 @@
 #ifndef MAIN_RESULTSETCOMPOSE_H
 #define MAIN_RESULTSETCOMPOSE_H
 
+#include <memory>
 #include "ResultSet.h"
 
 

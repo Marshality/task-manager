@@ -5,48 +5,25 @@
 #ifndef PSQL_CONNECTION_H
 #define PSQL_CONNECTION_H
 
-#include <libpq-fe.h>
 #include <string>
 
 #include "ResultSet.h"
 #include "exceptions/PGException.h"
 
+struct pg_conn;
 
 class Connection {
 public:
-    explicit Connection(const char* config) : connection(PQconnectdb(config)) {}
-    ~Connection() { PQfinish(connection); }
+    explicit Connection(const char* config);
+    ~Connection();
 
-    bool isActive() const { return PQstatus(connection) == ConnStatusType::CONNECTION_OK; }
+    bool isActive() const;
 
-    std::shared_ptr<ResultSet> execute(const std::string& query) const {
-        if (!isActive()) {
-            throw PGException(PQerrorMessage(connection));
-        }
-
-        return std::make_shared<ResultSet>(PQexec(connection, query.c_str()));
-    }
-
-    std::shared_ptr<ResultSet> executeWithParams(const std::string& query, const char** params, int argsCount) const {
-        if (!isActive()) {
-            throw PGException(PQerrorMessage(connection));
-        }
-
-        return std::make_shared<ResultSet>(
-                PQexecParams(
-                connection,
-                query.c_str(),
-                argsCount,
-                NULL,
-                params,
-                NULL,
-                NULL,
-                0
-                ));
-    }
+    std::shared_ptr<ResultSet> execute(const std::string& query) const;
+    std::shared_ptr<ResultSet> executeWithParams(const std::string& query, const char** params, int argsCount) const;
 
 private:
-    PGconn* connection;
+    pg_conn* connection;
 };
 
 

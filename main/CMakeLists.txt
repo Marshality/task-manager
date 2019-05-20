@@ -13,7 +13,11 @@ add_executable(main
         objects/task/Task.cpp
         objects/project/Project.cpp
         objects/user/User.cpp
-        objects/project/ProjectMeta.cpp objects/task/TaskMeta.cpp objects/user/UserMeta.cpp)
+        objects/project/ProjectMeta.cpp
+        objects/task/TaskMeta.cpp
+        objects/user/UserMeta.cpp
+        connection/Connection.cpp
+        connection/ResultSet.cpp)
 
 target_include_directories(main PRIVATE .)
 target_include_directories(main PRIVATE objects)
