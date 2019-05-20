@@ -11,6 +11,6 @@ find_package(Boost 1.68.0 COMPONENTS filesystem system REQUIRED)
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
-    add_executable(server server.cpp asyncserver.cpp getter.cpp getter.h)
+    add_executable(server beastserver/server.cpp)
     target_link_libraries(server ${Boost_LIBRARIES})
 endif()

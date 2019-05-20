@@ -8,19 +8,21 @@
 #include <boost/asio.hpp>
 #include <iostream>
 #include "getter.h"
+#include <boost/beast/http.hpp>
 
 #define COUNT_OF_THREADS 4
 #define BUFFER_SIZE 1024
 
 using namespace boost;
 using namespace boost::asio;
-
-
+using namespace boost::beast;
 
 class Client : public std::enable_shared_from_this<Client> {
 private:
     ip::tcp::socket socket;
     char buffer[BUFFER_SIZE];
+//    http::request<http::string_body> request;
+//    ::strand<io_context::executor_type> strand;
 
     void onRead(const system::error_code& error, std::size_t bytes) {
         if (error == asio::error::eof) {
@@ -44,11 +46,11 @@ private:
         std::stringstream responseBody, response;
 
         responseBody << "<title>Test C++ HTTP Server</title>\n"
-                      << "<h1>Test page</h1>\n"
-                      << "<p>This is body of the test page...</p>\n"
-                      << "<h2>Request headers</h2>\n"
-                      << "<pre>" << buffer << "</pre>\n"
-                      << "<em><small>Test C++ Http Server</small></em>\n";
+                     << "<h1>Test page</h1>\n"
+                     << "<p>This is body of the test page...</p>\n"
+                     << "<h2>Request headers</h2>\n"
+                     << "<pre>" << buffer << "</pre>\n"
+                     << "<em><small>Test C++ Http Server</small></em>\n";
 
 
         response << "HTTP/1.1 200 OK\r\n"
@@ -66,7 +68,9 @@ private:
     }
 
 public:
-    explicit Client(io_service& service) : socket(service) {}
+    explicit Client(io_service& service) : socket(service) {
+//        this->strand = ::strand<io_context::executor_type>(socket.get_executor());
+    }
 
     ~Client() = default;
 
@@ -75,6 +79,19 @@ public:
     }
 
     void read() {
+//        request = {};
+
+//        http::async_read(socket, buffer, request,
+//                         boost::asio::bind_executor(
+//                                 strand,
+//                                 std::bind(
+//                                         &Client::onRead,
+//                                         shared_from_this(),
+//                                         std::placeholders::_1,
+//                                         std::placeholders::_2)));
+
+
+
         socket.async_read_some(asio::buffer(buffer),
                                std::bind(&Client::onRead, shared_from_this(), std::placeholders::_1,
                                          std::placeholders::_2));
