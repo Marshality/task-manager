@@ -6,9 +6,7 @@
 #define PSQL_CONNECTION_H
 
 #include <string>
-
 #include "ResultSet.h"
-#include "exceptions/PGException.h"
 
 struct pg_conn;
 

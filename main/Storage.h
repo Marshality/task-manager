@@ -18,26 +18,17 @@ public:
     // Main method
     static Storage& getInstance();
 
-    template <typename Object>
-    std::shared_ptr<Object> getOne(const string_map& kwargs) const;
-
-    template <typename Object>
-    std::shared_ptr<Set<Object>> getMany(const string_map& kwargs) const;
-
-    std::shared_ptr<ResultSet> query(const std::string& query) const {
-        return connection.execute(query);
-    }
+    template <typename Object> std::shared_ptr<Object> getOne(const string_map& kwargs) const;
+    template <typename Object> std::shared_ptr<Set<Object>> getMany(const string_map& kwargs) const;
 
 private:
     explicit Storage(const std::string& connectionConfig);
 
     Connection connection;
 
-    template <typename Object>
-    Meta<Object>& getMeta() const;
+    template <typename Object> Meta<Object>& getMeta() const;
 
-    template <typename Object>
-    std::shared_ptr<ResultSet> getQuery(const string_map& kwargs) const;
+    template <typename Object> std::shared_ptr<ResultSet> getQuery(const string_map& kwargs) const;
 };
 
 // Implementation
@@ -90,7 +81,7 @@ std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs) const {
         return connection.executeWithParams(statement, params, argsCount);
     }
 
-    return this->query(statement);
+    return connection.execute(statement);
 }
 
 

@@ -1,18 +1,11 @@
 #include <iostream>
-#include "Storage.h"
-#include "Set.h"
 #include "task/Task.h"
 #include "project/Project.h"
 #include "user/User.h"
 
-#include "Meta.h"
-
-#include <vector>
 
 int main() {
-//    auto taskSet = Storage::getInstance().getMany<Task>("");
     auto taskSet = Task::getMany({});
-
     taskSet->bypass([](Task& task) {
         std::cout << task.id() << " | "
                   << task.user_id() << " | "
