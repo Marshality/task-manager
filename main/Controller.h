@@ -22,6 +22,8 @@ public:
     void editProject(Request& request);
     void editTask(Request& request);
 
+    void task(Request& request, std::string& htmlBody);
+
 private:
     void execute(BaseCommand& cmd) {
         try {

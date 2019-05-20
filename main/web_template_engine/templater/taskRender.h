@@ -7,30 +7,27 @@
 
 #include <mstch/mstch.hpp>
 #include "../FileToStringConverter.h"
-#include "../TaskStruct.h"
+#include "task/Task.h"
+#include "project/Project.h"
+#include "user/User.h"
 
 
-std::string task() {
+std::string renderTask(std::shared_ptr<Task> task) {
     FileToStringConverter path("../templates/");
 
-    struct Task task;
-    struct Task project;
-    struct Task user;
+    auto user = task->user();
+    auto project = task->project();
 
     mstch::map context{
-            {"title", std::string(task.title())},
-            {"project", std::string(project.title())},
-            {"description", std::string(task.description())},
-            {"name", std::string(user.title())},
-            {"surname", std::string(user.title())},
-            {"creation_date", std::string(task.creation_date())},
-            {"deadline", mstch::map{
-                {"day", 27},
-                {"month", std::string{"мая"}},
-                {"year", std::string{"2019"}},
-                {"time", std::string{"12:00"}}}
-            }
+            {"title", std::string(task->title())},
+            {"project", std::string(project->title())},
+            {"description", std::string(task->description())},
+            {"name", std::string(user->name())},
+            {"surname", std::string(user->surname())},
+            {"creation_date", std::string(task->creation_date())},
+            {"deadline", std::string(task->deadline())}
     };
+
     return mstch::render(path("task.html"), context);
 }
 

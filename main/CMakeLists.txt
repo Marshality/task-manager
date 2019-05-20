@@ -6,6 +6,14 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(PostgreSQL REQUIRED)
 link_libraries(${PostgreSQL_LIBRARIES})
 
+find_package(Boost)
+include_directories(${Boost_INCLUDE_DIRS})
+link_libraries(${Boost_LIBRARIES})
+
+add_subdirectory(web_template_engine/mstch-master)
+include_directories(${mstch_INCLUDE_DIR})
+link_libraries(mstch)
+
 add_executable(main
         main.cpp
         Controller.cpp

@@ -7,14 +7,10 @@
 
 #include <mstch/mstch.hpp>
 #include "../FileToStringConverter.h"
-#include "../TaskStruct.h"
 #include <vector>
 
 std::string project() {
     FileToStringConverter path("../templates/");
-
-    struct Project project;
-    struct Task user;
 
     std::vector<Task> tasks {{}, {}, {}, {}};
 
