@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Storage.h"
-#include "task/TaskSet.h"
+#include "Set.h"
+#include "task/Task.h"
 
 int main() {
-    auto set = Storage::getInstance().query("SELECT * FROM tasks;");
-
-    TaskSet taskSet(set);
-    taskSet.bypass([](Task& task) {
+//    auto taskSet = Storage::getInstance().getMany<Task>("");
+    auto taskSet = Task::getMany();
+    taskSet->bypass([](Task& task) {
         std::cout << task.id() << " | "
                   << task.user_id() << " | "
                   << task.project_id() << " | "

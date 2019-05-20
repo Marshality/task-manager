@@ -10,7 +10,7 @@
 
 class ResultSetCompose {
 protected:
-    explicit ResultSetCompose(const std::shared_ptr<ResultSet>& _set) : set(_set) {}
+    explicit ResultSetCompose(std::shared_ptr<ResultSet> _set) : set(std::move(_set)) {}
 
     const std::shared_ptr<ResultSet> set;
 };

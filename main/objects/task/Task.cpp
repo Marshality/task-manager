@@ -49,7 +49,7 @@ std::shared_ptr<User> Task::user() {
 
 std::shared_ptr<Project> Task::project() {
     if (!projectInstance) {
-
+//        projectInstance = Project::getOne();
     }
 
     return projectInstance;

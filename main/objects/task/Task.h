@@ -6,12 +6,14 @@
 #define MAIN_TASK_H
 
 #include "BaseObject.h"
+#include "StorageQuickAccess.h"
+#include "Set.h"
 
 
 class Project;
 class User;
 
-class Task : public BaseObject {
+class Task : public BaseObject, public StorageQuickAccess<Task> {
 public:
     using BaseObject::BaseObject;
 

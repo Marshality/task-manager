@@ -5,13 +5,15 @@
 #ifndef MAIN_USER_H
 #define MAIN_USER_H
 
+#include "StorageQuickAccess.h"
 #include "BaseObject.h"
+#include "Set.h"
 
 
 class ProjectSet;
 class TaskSet;
 
-class User : public BaseObject {
+class User : public BaseObject, public StorageQuickAccess<User> {
 public:
     using BaseObject::BaseObject;
 
@@ -29,7 +31,7 @@ public:
 private:
     std::shared_ptr<ProjectSet> projectsInstance;
     std::shared_ptr<TaskSet> tasksInstance;
-
 };
+
 
 #endif //MAIN_USER_H

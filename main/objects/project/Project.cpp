@@ -4,6 +4,9 @@
 
 #include "Project.h"
 
+#include "task/Task.h"
+#include "user/User.h"
+
 
 // Direct fields
 
@@ -37,9 +40,9 @@ std::shared_ptr<User> Project::owner() {
     return ownerInstance;
 }
 
-std::shared_ptr<TaskSet> Project::tasks() {
+std::shared_ptr<Set<Task>> Project::tasks() {
     if (!tasksInstance) {
-
+        tasksInstance = Task::getMany();
     }
 
     return tasksInstance;

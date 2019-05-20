@@ -10,7 +10,7 @@
 
 class BaseObject : public ResultSetCompose {
 public:
-    BaseObject(const std::shared_ptr<ResultSet>& _set, int _index) : ResultSetCompose(_set), index(_index) {}
+    BaseObject(std::shared_ptr<ResultSet> _set, int _index) : ResultSetCompose(std::move(_set)), index(_index) {}
 
 protected:
     int index;

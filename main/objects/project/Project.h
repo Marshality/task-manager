@@ -6,12 +6,17 @@
 #define MAIN_PROJECT_H
 
 #include "BaseObject.h"
+#include "StorageQuickAccess.h"
+#include "Set.h"
 
 
+template <typename Object>
+class Set;
+
+class Task;
 class User;
-class TaskSet;
 
-class Project : public BaseObject {
+class Project : public BaseObject, public StorageQuickAccess<Project> {
 public:
     using BaseObject::BaseObject;
 
@@ -24,12 +29,17 @@ public:
 
     // Relative fields
     std::shared_ptr<User> owner();
-    std::shared_ptr<TaskSet> tasks();
+    std::shared_ptr<Set<Task>> tasks();
+
+    static struct Meta {
+        const std::string tableName = "projects";
+    } meta;
 
 private:
     std::shared_ptr<User> ownerInstance;
-    std::shared_ptr<TaskSet> tasksInstance;
+    std::shared_ptr<Set<Task>> tasksInstance;
 
 };
+
 
 #endif //MAIN_PROJECT_H
