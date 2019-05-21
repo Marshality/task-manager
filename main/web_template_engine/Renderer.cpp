@@ -14,11 +14,11 @@ std::string Renderer::base(std::string body, std::string pageTitle) {
     return mstch::render(path("base.html"), base);
 }
 
-std::string Renderer::mainPage() {
-    return path("mainPage.html");
+std::string Renderer::renderMain() {
+    return path("main.html");
 }
 
-std::string Renderer::projectListPage(std::shared_ptr<Set<Project>> projects) {
+std::string Renderer::renderProjectList(std::shared_ptr<Set<Project>> projects) {
 
     mstch::array arr;
 
@@ -45,7 +45,7 @@ std::string Renderer::projectListPage(std::shared_ptr<Set<Project>> projects) {
     return mstch::render(path("projectsList.html"), context);
 }
 
-std::string Renderer::projectPage(std::shared_ptr<Project> project) {
+std::string Renderer::renderProject(std::shared_ptr<Project> project) {
 
     auto creator = project->owner();
     auto tasks = project->tasks();
@@ -79,7 +79,7 @@ std::string Renderer::projectPage(std::shared_ptr<Project> project) {
     return mstch::render(path("project.html"), context);
 }
 
-std::string Renderer::taskPage(std::shared_ptr<Task> task) {
+std::string Renderer::renderTask(std::shared_ptr<Task> task) {
 
     auto user = task->user();
     auto project = task->project();

@@ -11,30 +11,30 @@
 class Renderer {
 public:
 
-    std::string MainPage() {
-        return base(mainPage(), "Главная");
+    std::string mainPage() {
+        return base(renderMain(), "Главная");
     }
 
-    std::string ProjectListPage(std::shared_ptr<Set<Project>> projects) {
-        return base(projectListPage(projects), "Список проектов");
+    std::string projectListPage(std::shared_ptr<Set<Project>> projects) {
+        return base(renderProjectList(projects), "Список проектов");
     }
 
-    std::string ProjectPage(std::shared_ptr<Project> project) {
-        return base(projectPage(project), "Проект");
+    std::string projectPage(std::shared_ptr<Project> project) {
+        return base(renderProject(project), "Проект");
     }
 
-    std::string TaskPage(std::shared_ptr<Task> task) {
-        return base(taskPage(task), "Задача");
+    std::string taskPage(std::shared_ptr<Task> task) {
+        return base(renderTask(task), "Задача");
     }
 
 private:
-    FileToStringConverter path = FileToStringConverter("templates/");
+    FileToStringConverter path = FileToStringConverter("web_template_engine/templates/");
 
     std::string base(std::string body, std::string pageTitle);
 
-    std::string mainPage();
-    std::string projectListPage(std::shared_ptr<Set<Project>> projects);
-    std::string projectPage(std::shared_ptr<Project> project);
-    std::string taskPage(std::shared_ptr<Task> task);
+    std::string renderMain();
+    std::string renderProjectList(std::shared_ptr<Set<Project>> projects);
+    std::string renderProject(std::shared_ptr<Project> project);
+    std::string renderTask(std::shared_ptr<Task> task);
 
 };
