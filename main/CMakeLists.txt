@@ -25,7 +25,7 @@ add_executable(main
         objects/task/TaskMeta.cpp
         objects/user/UserMeta.cpp
         connection/Connection.cpp
-        connection/ResultSet.cpp)
+        connection/ResultSet.cpp web_template_engine/Renderer.cpp)
 
 target_include_directories(main PRIVATE .)
 target_include_directories(main PRIVATE objects)

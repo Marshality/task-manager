@@ -10,7 +10,7 @@
 #include "task/Task.h"
 #include "user/User.h"
 #include "project/Project.h"
-#include "web_template_engine/templater/taskRender.h"
+#include "web_template_engine/Renderer.h"
 
 
 class TaskCommand : public BaseCommand {
@@ -20,7 +20,8 @@ public:
     void execute() const override {
         auto task = Task::getOne({{"id", "1"}});
 
-        std::cout << renderTask(task) << std::endl;
+        Renderer renderer;
+        std::cout << renderer.TaskPage(task) << std::endl;
     }
 };
 

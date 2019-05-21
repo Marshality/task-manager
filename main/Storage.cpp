@@ -12,7 +12,7 @@ Storage::Storage(const std::string& connectionConfig) :
 }
 
 Storage& Storage::getInstance() {
-    static Storage instance("host=localhost port=5432 dbname=ex user=ex_user password=12345678");
+    static Storage instance("host=localhost port=5432 dbname=testdb user=yulia_plaksina password=");
 
     return instance;
 }
