@@ -12,7 +12,7 @@ class CreateProjectCommand : public BaseCommand {
 public:
     using BaseCommand::BaseCommand;
 
-    void execute() const override {
+    void execute() override {
         // query to db
 
         // generating context

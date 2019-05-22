@@ -6,6 +6,8 @@
 #define MY_PROJECT_FILETOSTRINGCONVERTER_H
 
 #include <fstream>
+#include "exceptions/FileNotOpenException.h"
+
 
 class FileToStringConverter {
 public:
@@ -14,6 +16,10 @@ public:
     std::string operator() (const std::string& filepath) {
         std::ifstream fstream;
         fstream.open(templatesPath + filepath, std::fstream::out);
+
+        if (!fstream.is_open()) {
+            throw FileNotOpenException();
+        }
 
         std::string string;
         std::getline(fstream, string, '\0');
