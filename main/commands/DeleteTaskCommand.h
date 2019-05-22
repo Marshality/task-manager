@@ -12,7 +12,7 @@ class DeleteTaskCommand : public BaseCommand {
 public:
     using BaseCommand::BaseCommand;
 
-    void execute() const override {
+    void execute() override {
 
     }
 };

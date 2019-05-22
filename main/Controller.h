@@ -13,23 +13,27 @@
 
 class Controller {
 public:
-    void createProject(Request& request);
-    void deleteProject(Request& request);
+    std::string createProject(Request& request);
+    std::string deleteProject(Request& request);
 
-    void createTask(Request& request);
-    void deleteTask(Request& request);
+    std::string createTask(Request& request);
+    std::string deleteTask(Request& request);
 
-    void editProject(Request& request);
-    void editTask(Request& request);
+    std::string editProject(Request& request);
+    std::string editTask(Request& request);
 
-    void task(Request& request, std::string& htmlBody);
+    std::string task(Request& request);
 
 private:
-    void execute(BaseCommand& cmd) {
+    Renderer renderer;
+
+    std::string execute(BaseCommand& cmd) {
         try {
             cmd.execute();
+            return cmd.getPage();
         } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
+            return "ERROR";
         }
     }
 };

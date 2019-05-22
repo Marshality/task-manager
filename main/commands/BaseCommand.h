@@ -6,16 +6,23 @@
 #define MAIN_BASECOMMAND_H
 
 #include "Request.h"
+#include "web_template_engine/Renderer.h"
 
 
 class BaseCommand {
 public:
-    explicit BaseCommand(Request& _request) : request(_request) {}
+    explicit BaseCommand(Renderer& _renderer, Request& _request) : renderer(_renderer), request(_request) {}
 
-    virtual void execute() const = 0;
+    virtual void execute() = 0;
+
+    std::string getPage() {
+        return renderedPage;
+    }
 
 protected:
+    Renderer& renderer;
     Request& request;
+    std::string renderedPage;
 };
 
 

@@ -6,7 +6,8 @@
 #define MY_PROJECT_FILETOSTRINGCONVERTER_H
 
 #include <fstream>
-#include "web_template_engine/exceptions/FileNotOpenException.h"
+#include "exceptions/FileNotOpenException.h"
+
 
 class FileToStringConverter {
 public:

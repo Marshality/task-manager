@@ -10,7 +10,6 @@
 
 class Renderer {
 public:
-
     std::string mainPage() {
         return base(renderMain(), "Главная");
     }
@@ -28,7 +27,7 @@ public:
     }
 
 private:
-    FileToStringConverter path = FileToStringConverter("web_template_engine/templates/");
+    FileToStringConverter path = FileToStringConverter("../web_template_engine/templates/");
 
     std::string base(std::string body, std::string pageTitle);
 

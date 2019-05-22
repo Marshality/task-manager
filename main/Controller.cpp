@@ -11,37 +11,37 @@
 #include "EditProjectCommand.h"
 #include "TaskCommand.h"
 
-void Controller::createTask(Request& request) {
-    CreateProjectCommand cmd(request);
-    execute(cmd);
+std::string Controller::createTask(Request& request) {
+    CreateProjectCommand cmd(renderer, request);
+    return execute(cmd);
 }
 
-void Controller::createProject(Request& request) {
-    CreateProjectCommand cmd(request);
-    execute(cmd);
+std::string Controller::createProject(Request& request) {
+    CreateProjectCommand cmd(renderer, request);
+    return execute(cmd);
 }
 
-void Controller::deleteProject(Request& request) {
-    DeleteProjectCommand cmd(request);
-    execute(cmd);
+std::string Controller::deleteProject(Request& request) {
+    DeleteProjectCommand cmd(renderer, request);
+    return execute(cmd);
 }
 
-void Controller::deleteTask(Request& request) {
-    DeleteTaskCommand cmd(request);
-    execute(cmd);
+std::string Controller::deleteTask(Request& request) {
+    DeleteTaskCommand cmd(renderer, request);
+    return execute(cmd);
 }
 
-void Controller::editTask(Request& request) {
-    EditTaskCommand cmd(request);
-    execute(cmd);
+std::string Controller::editTask(Request& request) {
+    EditTaskCommand cmd(renderer, request);
+    return execute(cmd);
 }
 
-void Controller::editProject(Request& request) {
-    EditProjectCommand cmd(request);
-    execute(cmd);
+std::string Controller::editProject(Request& request) {
+    EditProjectCommand cmd(renderer, request);
+    return execute(cmd);
 }
 
-void Controller::task(Request& request, std::string& content) {
-    TaskCommand cmd(request);
-    execute(cmd);
+std::string Controller::task(Request& request) {
+    TaskCommand cmd(renderer, request);
+    return execute(cmd);
 }
