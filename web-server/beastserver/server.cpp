@@ -115,30 +115,29 @@ void handleRequest(boost::beast::string_view docRoot, http::request<Body, http::
     }
 
     // Routing
-    std::string path = pathCat(docRoot, req.target());
-    if (req.target().back() == '/') {
-        path.append("index.html");
-    }
-
     http::string_body::value_type body;
 
-    std::string test = "<!DOCTYPE html>\n"
-                       "<html lang=\"en\">\n"
-                       "<head>\n"
-                       "    <meta charset=\"UTF-8\">\n"
-                       "    <title>Title</title>\n"
-                       "</head>\n"
-                       "<body>\n"
-                       "text\n"
-                       "</body>\n"
-                       "</html>";
+    if (req.target().back() == '/') {
+        std::string page = "<!DOCTYPE html>\n"
+                           "<html lang=\"en\">\n"
+                           "<head>\n"
+                           "    <meta charset=\"UTF-8\">\n"
+                           "    <title>Title</title>\n"
+                           "</head>\n"
+                           "<body>\n"
+                           "text\n"
+                           "</body>\n"
+                           "</html>";
 
-    for (auto& c : test) {
-        body.push_back(c);
+        for (auto& c : page) {
+            body.push_back(c);
+        }
+    } else {
+        return send(not_found(req.target()));
     }
 
     // Cache the size since we need it after the move
-    auto const size = test.size();
+    auto const size = body.length();
 
     // Respond to HEAD request
     if (req.method() == http::verb::head) {
@@ -250,7 +249,6 @@ public:
         }
 
         if (close) {
-
             return doClose();
         }
 
@@ -346,6 +344,7 @@ int main(int argc, char* argv[]) {
                   "    http-server-async 0.0.0.0 8080 . 1\n";
         return EXIT_FAILURE;
     }
+
     auto const address = boost::asio::ip::make_address(argv[1]);
     auto const port = static_cast<unsigned short>(std::atoi(argv[2]));
     auto const docRoot = std::make_shared<std::string>(argv[3]);
