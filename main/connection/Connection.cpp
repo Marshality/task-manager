@@ -4,7 +4,7 @@
 
 #include "Connection.h"
 
-#include <libpq-fe.h>
+#include </usr/local/Cellar/libpq/11.1/include/libpq-fe.h>
 #include "exceptions/PGException.h"
 
 Connection::Connection(const char* config) :

@@ -4,7 +4,7 @@
 
 #include "ResultSet.h"
 
-#include <libpq-fe.h>
+#include </usr/local/Cellar/libpq/11.1/include/libpq-fe.h>
 #include "exceptions/CursorIndexExceedsException.h"
 
 

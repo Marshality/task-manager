@@ -3,10 +3,12 @@ project(main)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(BOOST_ROOT /usr/local/Cellar/boost/1.68.0_1)
+
 find_package(PostgreSQL REQUIRED)
 link_libraries(${PostgreSQL_LIBRARIES})
 
-find_package(Boost)
+find_package(Boost 1.68.0 COMPONENTS filesystem system REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_libraries(${Boost_LIBRARIES})
 
@@ -15,7 +17,6 @@ include_directories(${mstch_INCLUDE_DIR})
 link_libraries(mstch)
 
 add_executable(main
-        main.cpp
         Controller.cpp
         Storage.cpp
         objects/task/Task.cpp
@@ -27,6 +28,7 @@ add_executable(main
         connection/Connection.cpp
         connection/ResultSet.cpp
         web_template_engine/Renderer.cpp
+        web-server/beastserver/server.cpp
         )
 
 target_include_directories(main PRIVATE .)
