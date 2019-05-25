@@ -17,6 +17,10 @@ struct StorageAccess {
     static std::shared_ptr<Set<Object>> getMany(const string_map& kwargs) {
         return Storage::getInstance().getMany<Object>(kwargs);
     }
+
+    static void create(const string_map& kwargs) {
+        Storage::getInstance().create<Object>(kwargs);
+    }
 };
 
 #endif //MAIN_STORAGEQUICKACCESS_H

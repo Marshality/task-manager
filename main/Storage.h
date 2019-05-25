@@ -21,6 +21,8 @@ public:
     template <typename Object> std::shared_ptr<Object> getOne(const string_map& kwargs) const;
     template <typename Object> std::shared_ptr<Set<Object>> getMany(const string_map& kwargs) const;
 
+    template <typename Object> void create(const string_map& kwargs) const;
+
 private:
     explicit Storage(const std::string& connectionConfig);
 
@@ -82,6 +84,44 @@ std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs) const {
     }
 
     return connection.execute(statement);
+}
+
+template <typename Object>
+void Storage::create(const string_map& kwargs) const {
+    if (kwargs.empty()) {
+        return;
+    }
+
+    std::string statement = "INSERT INTO ";
+    statement += getMeta<Object>().tableName();
+    statement += ' ';
+
+    int argsCount = static_cast<int>(kwargs.size());
+    const char* params[argsCount];
+    int i = 0;
+
+    std::string cols = "(";
+    std::string values = "(";
+
+    for (auto& pair : kwargs) {
+        cols += pair.first;
+        values += '$';
+
+        params[i] = pair.second.c_str();
+
+        values += std::to_string(++i);
+        cols += ',';
+        values += ',';
+    }
+
+    cols.back() = ')';
+    values.back() = ')';
+
+    statement += cols;
+    statement += " VALUES ";
+    statement += values;
+
+    connection.executeWithParams(statement, params, argsCount);
 }
 
 
