@@ -17,23 +17,24 @@ link_libraries(mstch)
 add_executable(main
         main.cpp
         controller/Controller.cpp
-        Storage.cpp
+        database/Storage.cpp
         objects/task/Task.cpp
         objects/project/Project.cpp
         objects/user/User.cpp
         objects/project/ProjectMeta.cpp
         objects/task/TaskMeta.cpp
         objects/user/UserMeta.cpp
-        connection/Connection.cpp
-        connection/ResultSet.cpp
+        database/connection/Connection.cpp
+        database/connection/ResultSet.cpp
         web_template_engine/Renderer.cpp
         )
 
 target_include_directories(main PRIVATE .)
 target_include_directories(main PRIVATE objects)
 target_include_directories(main PRIVATE objects/base)
-target_include_directories(main PRIVATE connection)
-target_include_directories(main PRIVATE connection/exceptions)
+target_include_directories(main PRIVATE database)
+target_include_directories(main PRIVATE database/connection)
+target_include_directories(main PRIVATE database/connection/exceptions)
 target_include_directories(main PRIVATE controller)
 
 

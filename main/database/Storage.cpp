@@ -5,7 +5,7 @@
 #include "Storage.h"
 
 #include <fstream>
-#include "NoSuchFieldException.h"
+#include "exceptions/NoSuchFieldException.h"
 
 
 std::string readConnectionConfig() {
