@@ -14,7 +14,7 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        auto task = Task::getOne(_request.GET);
+        auto task = Task::getOne(_request.OPTIONS);
 
         _renderedPage = _renderer.taskPage(task);
     }

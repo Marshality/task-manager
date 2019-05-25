@@ -11,6 +11,8 @@
 struct Request {
     string_map GET;
     string_map POST;
+
+    string_map OPTIONS;
 };
 
 #endif //MAIN_REQUEST_H

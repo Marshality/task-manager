@@ -4,7 +4,7 @@
 int main() {
     Controller controller;
     Request request = {
-            .GET={{"owner_id", "1"}}
+            .OPTIONS={{"owner_id", "1"}}
     };
 
     std::cout << controller.projectList(request) << std::endl;

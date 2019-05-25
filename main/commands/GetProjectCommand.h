@@ -14,7 +14,7 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        auto project = Project::getOne(_request.GET);
+        auto project = Project::getOne(_request.OPTIONS);
 
         _renderedPage = _renderer.projectPage(project);
     }
