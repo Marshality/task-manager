@@ -5,6 +5,7 @@
 #include "Storage.h"
 
 #include <fstream>
+#include "NoSuchFieldException.h"
 
 
 std::string readConnectionConfig() {
@@ -41,8 +42,13 @@ std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs, const Bas
         int i = 0;
 
         for (auto& pair : kwargs) {
+            if (!meta.hasField(pair.first)) {
+                throw NoSuchFieldException(meta.tableName(), pair.first);
+            }
+
             statement += pair.first;
             statement += "=$";
+
 
             params[i] = pair.second.c_str();
 
@@ -75,6 +81,10 @@ void Storage::createQuery(const string_map& kwargs, const BaseMeta& meta) const 
     std::string values = "(";
 
     for (auto& pair : kwargs) {
+        if (!meta.hasField(pair.first)) {
+            throw NoSuchFieldException(meta.tableName(), pair.first);
+        }
+
         cols += pair.first;
         values += '$';
 
