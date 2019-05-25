@@ -11,10 +11,10 @@ int main() {
 //    std::cout << controller.index(request) << std::endl;
 
     User::create({
-        {"name", "bob"},
-        {"surname", "marley"},
+        {"name", "john"},
+        {"surname", "smith"},
         {"birth_date", "now()"},
-        {"avatar", "//none"}
+        {"avatar", "//none_as_always"}
     });
 
     return 0;

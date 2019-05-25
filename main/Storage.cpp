@@ -28,3 +28,69 @@ Storage& Storage::getInstance() {
 
     return instance;
 }
+
+std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs, const BaseMeta& meta) const {
+    std::string statement = "SELECT * FROM ";
+    statement += meta.tableName();
+
+    if (!kwargs.empty()) {
+        statement += " WHERE ";
+
+        int argsCount = static_cast<int>(kwargs.size());
+        const char* params[argsCount];
+        int i = 0;
+
+        for (auto& pair : kwargs) {
+            statement += pair.first;
+            statement += "=$";
+
+            params[i] = pair.second.c_str();
+
+            statement += std::to_string(++i);
+            statement += ',';
+        }
+
+        statement.back() = ';';
+
+        return connection.executeWithParams(statement, params, argsCount);
+    }
+
+    return connection.execute(statement);
+}
+
+void Storage::createQuery(const string_map& kwargs, const BaseMeta& meta) const {
+    if (kwargs.empty()) {
+        return;
+    }
+
+    std::string statement = "INSERT INTO ";
+    statement += meta.tableName();
+    statement += ' ';
+
+    int argsCount = static_cast<int>(kwargs.size());
+    const char* params[argsCount];
+    int i = 0;
+
+    std::string cols = "(";
+    std::string values = "(";
+
+    for (auto& pair : kwargs) {
+        cols += pair.first;
+        values += '$';
+
+        params[i] = pair.second.c_str();
+
+        values += std::to_string(++i);
+        cols += ',';
+        values += ',';
+    }
+
+    cols.back() = ')';
+    values.back() = ')';
+
+    statement += cols;
+    statement += " VALUES ";
+    statement += values;
+
+    connection.executeWithParams(statement, params, argsCount);
+}
