@@ -7,7 +7,7 @@ int main() {
             .GET={{"id", "1"}}
     };
 
-    std::cout << controller.task(request) << std::endl;
+    std::cout << controller.project(request) << std::endl;
 
     return 0;
 }

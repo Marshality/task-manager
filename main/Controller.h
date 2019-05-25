@@ -23,6 +23,7 @@ public:
     std::string editTask(Request& request);
 
     std::string task(Request& request);
+    std::string project(Request& request);
 
 private:
     Renderer renderer;

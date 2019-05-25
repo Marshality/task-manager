@@ -5,7 +5,6 @@
 #ifndef MAIN_TASKCOMMAND_H
 #define MAIN_TASKCOMMAND_H
 
-#include <iostream>
 #include "BaseCommand.h"
 #include "task/Task.h"
 
