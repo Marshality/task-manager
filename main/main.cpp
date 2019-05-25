@@ -12,7 +12,5 @@ int main() {
         {"avatar", "//beautiful"}
     }};
 
-    std::cout << controller.createUser(request) << std::endl;
-
     return 0;
 }
