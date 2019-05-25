@@ -33,7 +33,7 @@ private:
             return cmd.getPage();
         } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
-            return "ERROR";
+            return "Error page";
         }
     }
 };

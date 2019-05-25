@@ -9,7 +9,7 @@
 #include "DeleteTaskCommand.h"
 #include "EditTaskCommand.h"
 #include "EditProjectCommand.h"
-#include "TaskCommand.h"
+#include "GetTaskCommand.h"
 
 std::string Controller::createTask(Request& request) {
     CreateProjectCommand cmd(renderer, request);
@@ -42,6 +42,6 @@ std::string Controller::editProject(Request& request) {
 }
 
 std::string Controller::task(Request& request) {
-    TaskCommand cmd(renderer, request);
+    GetTaskCommand cmd(renderer, request);
     return execute(cmd);
 }
