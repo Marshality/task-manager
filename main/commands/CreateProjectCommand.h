@@ -6,6 +6,7 @@
 #define MAIN_CREATEPROJECTCOMMAND_H
 
 #include "BaseCommand.h"
+#include "project/Project.h"
 
 
 class CreateProjectCommand : public BaseCommand {
@@ -13,11 +14,7 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        // query to db
-
-        // generating context
-
-        // render
+        Project::create(_request.OPTIONS);
     }
 };
 

@@ -16,13 +16,16 @@ public:
     std::string index(Request& request);
 
     std::string createProject(Request& request);
+    std::string editProject(Request& request);
     std::string deleteProject(Request& request);
 
     std::string createTask(Request& request);
+    std::string editTask(Request& request);
     std::string deleteTask(Request& request);
 
-    std::string editProject(Request& request);
-    std::string editTask(Request& request);
+    std::string createUser(Request& request);
+    std::string editUser(Request& request);
+    std::string deleteUser(Request& request);
 
     std::string task(Request& request);
     std::string project(Request& request);
