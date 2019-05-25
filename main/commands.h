@@ -15,5 +15,6 @@
 #include "commands/EditTaskCommand.h"
 #include "commands/GetProjectCommand.h"
 #include "commands/GetTaskCommand.h"
+#include "commands/GetProjectListPage.h"
 
 #endif //MAIN_COMMANDS_H

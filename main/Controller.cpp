@@ -46,3 +46,8 @@ std::string Controller::project(Request& request) {
     GetProjectCommand cmd(renderer, request);
     return execute(cmd);
 }
+
+std::string Controller::projectList(Request& request) {
+    GetProjectListCommand cmd(renderer, request);
+    return execute(cmd);
+}

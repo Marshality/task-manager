@@ -25,6 +25,8 @@ public:
     std::string task(Request& request);
     std::string project(Request& request);
 
+    std::string projectList(Request& request);
+
 private:
     Renderer renderer;
 
