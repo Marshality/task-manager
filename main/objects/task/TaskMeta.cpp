@@ -8,13 +8,14 @@
 
 template <>
 Meta<Task>::Meta() :
-        tableName_("tasks"),
-        fieldsNames {
-                "id",
-                "user_id",
-                "project_id",
-                "title",
-                "description",
-                "creation_date",
-                "deadline"
-        } {}
+        BaseMeta(
+                "tasks",
+                {
+                        "id",
+                        "user_id",
+                        "project_id",
+                        "title",
+                        "description",
+                        "creation_date",
+                        "deadline"
+                }) {}

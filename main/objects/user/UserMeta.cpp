@@ -8,11 +8,12 @@
 
 template <>
 Meta<User>::Meta() :
-        tableName_("users"),
-        fieldsNames {
-                "id",
-                "name",
-                "surname",
-                "birth_date",
-                "avatar"
-        } {}
+        BaseMeta(
+                "users",
+                {
+                        "id",
+                        "name",
+                        "surname",
+                        "birth_date",
+                        "avatar"
+                }) {}
