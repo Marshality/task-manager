@@ -3,7 +3,9 @@
 
 int main() {
     Controller controller;
-    Request request;
+    Request request = {
+            .GET={{"id", "1"}}
+    };
 
     std::cout << controller.task(request) << std::endl;
 

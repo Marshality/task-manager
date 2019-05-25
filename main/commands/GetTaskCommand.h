@@ -12,12 +12,12 @@
 #include "project/Project.h"
 
 
-class TaskCommand : public BaseCommand {
+class GetTaskCommand : public BaseCommand {
 public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        auto task = Task::getOne({{"id", "1"}});
+        auto task = Task::getOne(request.GET);
 
         renderedPage = renderer.taskPage(task);
     }

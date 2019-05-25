@@ -9,12 +9,8 @@
 #include "Types.h"
 
 struct Request {
-    enum RequestType {
-        GET,
-        POST
-    } type;
-
-    string_map options;
+    string_map GET;
+    string_map POST;
 };
 
 #endif //MAIN_REQUEST_H
