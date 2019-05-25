@@ -11,18 +11,18 @@
 
 class BaseCommand {
 public:
-    explicit BaseCommand(Renderer& _renderer, Request& _request) : renderer(_renderer), request(_request) {}
+    explicit BaseCommand(Renderer& renderer, Request& request) : _renderer(renderer), _request(request) {}
 
     virtual void execute() = 0;
 
     std::string getPage() {
-        return renderedPage;
+        return _renderedPage;
     }
 
 protected:
-    Renderer& renderer;
-    Request& request;
-    std::string renderedPage;
+    Renderer& _renderer;
+    Request& _request;
+    std::string _renderedPage;
 };
 
 
