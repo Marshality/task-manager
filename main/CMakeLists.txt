@@ -16,7 +16,7 @@ link_libraries(mstch)
 
 add_executable(main
         main.cpp
-        Controller.cpp
+        controller/Controller.cpp
         Storage.cpp
         objects/task/Task.cpp
         objects/project/Project.cpp
@@ -32,8 +32,8 @@ add_executable(main
 target_include_directories(main PRIVATE .)
 target_include_directories(main PRIVATE objects)
 target_include_directories(main PRIVATE objects/base)
-target_include_directories(main PRIVATE commands)
 target_include_directories(main PRIVATE connection)
 target_include_directories(main PRIVATE connection/exceptions)
+target_include_directories(main PRIVATE controller)
 
 
