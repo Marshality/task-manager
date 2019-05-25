@@ -4,15 +4,27 @@
 
 #include "Storage.h"
 
+#include <fstream>
+
+
+std::string readConnectionConfig() {
+    std::ifstream file;
+    file.open("../database_config.txt", std::fstream::out);
+
+    std::string string;
+    std::getline(file, string, '\0');
+
+    file.close();
+
+    return string;
+}
 
 Storage::Storage(const std::string& connectionConfig) :
-    connection(connectionConfig.data())
-{
-
+        connection(connectionConfig.data()) {
 }
 
 Storage& Storage::getInstance() {
-    static Storage instance("host=localhost port=5432 dbname=ex user=ex_user password=12345678");
+    static Storage instance(readConnectionConfig());
 
     return instance;
 }
