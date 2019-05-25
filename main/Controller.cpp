@@ -3,14 +3,8 @@
 //
 
 #include "Controller.h"
-#include "CreateProjectCommand.h"
-#include "CreateProjectCommand.h"
-#include "DeleteProjectCommand.h"
-#include "DeleteTaskCommand.h"
-#include "EditTaskCommand.h"
-#include "EditProjectCommand.h"
-#include "GetTaskCommand.h"
-#include "GetProjectCommand.h"
+
+#include "commands.h"
 
 
 std::string Controller::createTask(Request& request) {
