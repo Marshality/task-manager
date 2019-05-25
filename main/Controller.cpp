@@ -8,51 +8,51 @@
 
 
 std::string Controller::index(Request& request) {
-    IndexCommand cmd(renderer, request);
+    IndexCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::createTask(Request& request) {
-    CreateProjectCommand cmd(renderer, request);
+    CreateProjectCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::createProject(Request& request) {
-    CreateProjectCommand cmd(renderer, request);
+    CreateProjectCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::deleteProject(Request& request) {
-    DeleteProjectCommand cmd(renderer, request);
+    DeleteProjectCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::deleteTask(Request& request) {
-    DeleteTaskCommand cmd(renderer, request);
+    DeleteTaskCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::editTask(Request& request) {
-    EditTaskCommand cmd(renderer, request);
+    EditTaskCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::editProject(Request& request) {
-    EditProjectCommand cmd(renderer, request);
+    EditProjectCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::task(Request& request) {
-    GetTaskCommand cmd(renderer, request);
+    GetTaskCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::project(Request& request) {
-    GetProjectCommand cmd(renderer, request);
+    GetProjectCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
 std::string Controller::projectList(Request& request) {
-    GetProjectListCommand cmd(renderer, request);
+    GetProjectListCommand cmd(_renderer, request);
     return execute(cmd);
 }

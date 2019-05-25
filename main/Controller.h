@@ -30,7 +30,7 @@ public:
     std::string projectList(Request& request);
 
 private:
-    Renderer renderer;
+    Renderer _renderer;
 
     std::string execute(BaseCommand& cmd) {
         try {
