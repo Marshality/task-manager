@@ -7,7 +7,7 @@ int main() {
             .OPTIONS={{"owner_id", "1"}}
     };
 
-    std::cout << controller.projectList(request) << std::endl;
+    std::cout << controller.index(request) << std::endl;
 
     return 0;
 }

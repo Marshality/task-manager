@@ -13,6 +13,8 @@
 
 class Controller {
 public:
+    std::string index(Request& request);
+
     std::string createProject(Request& request);
     std::string deleteProject(Request& request);
 

@@ -7,6 +7,11 @@
 #include "commands.h"
 
 
+std::string Controller::index(Request& request) {
+    IndexCommand cmd(renderer, request);
+    return execute(cmd);
+}
+
 std::string Controller::createTask(Request& request) {
     CreateProjectCommand cmd(renderer, request);
     return execute(cmd);

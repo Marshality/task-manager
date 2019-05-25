@@ -6,6 +6,7 @@
 #define MAIN_COMMANDS_H
 
 // Including all existing commands
+#include "commands/IndexCommand.h"
 #include "commands/BaseCommand.h"
 #include "commands/CreateProjectCommand.h"
 #include "commands/CreateTaskCommand.h"
