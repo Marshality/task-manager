@@ -37,11 +37,15 @@ public:
     }
 
     std::string loginSuccess(Request& _request) {
-        return base(renderLoginSuccess(_request), "Успешный вход");
+        return base(renderLoginSuccess(_request), "Успешно");
     }
 
     std::string addProjectSuccess(Request& _request, std::shared_ptr<Project> project) {
-        return base(renderAddProjectSuccess(_request, project), "Успешный вход");
+        return base(renderAddProjectSuccess(_request, project), "Успешно");
+    }
+
+    std::string addTaskSuccess(Request& _request) {
+        return base(renderAddTaskSuccess(_request), "Успешно");
     }
 
 private:
@@ -57,4 +61,5 @@ private:
     std::string renderAddProject(Request& request);
     std::string renderLoginSuccess(Request& request);
     std::string renderAddProjectSuccess(Request& request, std::shared_ptr<Project> project);
+    std::string renderAddTaskSuccess(Request& request);
 };

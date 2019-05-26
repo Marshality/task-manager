@@ -157,3 +157,13 @@ std::string Renderer::renderAddProjectSuccess(Request& request, std::shared_ptr<
 
     return mstch::render(path("projectSuccess.html"), context);
 }
+
+std::string Renderer::renderAddTaskSuccess(Request& request) {
+    mstch::map context{
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)},
+            {"project_id", std::string(request.OPTIONS["project_id"])}
+    };
+
+    return mstch::render(path("taskSuccess.html"), context);
+}
