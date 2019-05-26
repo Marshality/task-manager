@@ -9,10 +9,13 @@
 #include "Types.h"
 
 struct Request {
+    key_value AUTH;
+
     string_map GET;
     string_map POST;
 
     string_map OPTIONS;
 };
+
 
 #endif //MAIN_REQUEST_H
