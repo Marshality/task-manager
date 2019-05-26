@@ -167,3 +167,11 @@ std::string Renderer::renderAddTaskSuccess(Request& request) {
 
     return mstch::render(path("taskSuccess.html"), context);
 }
+
+std::string Renderer::renderSignIn(Request& request) {
+    return path("login.html");
+}
+
+std::string Renderer::renderSignUp(Request& request) {
+    return path("registry.html");
+}

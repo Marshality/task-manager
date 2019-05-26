@@ -48,6 +48,14 @@ public:
         return base(renderAddTaskSuccess(_request), "Успешно");
     }
 
+    std::string signIn(Request& _request) {
+        return base(renderSignIn(_request), "Вход");
+    }
+
+    std::string signUp(Request& _request) {
+        return base(renderSignUp(_request), "Регистрация");
+    }
+
 private:
     FileToStringConverter path = FileToStringConverter("../web_template_engine/templates/");
 
@@ -62,4 +70,6 @@ private:
     std::string renderLoginSuccess(Request& request);
     std::string renderAddProjectSuccess(Request& request, std::shared_ptr<Project> project);
     std::string renderAddTaskSuccess(Request& request);
+    std::string renderSignIn(Request& request);
+    std::string renderSignUp(Request& request);
 };
