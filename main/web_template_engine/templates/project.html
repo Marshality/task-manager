@@ -1,51 +1,55 @@
 <style>
-    .btn {
-        margin-top: 5px;
-        width: auto;
-        height: 30px;
-        background-color: #ccf7ee;
-        border: none;
-        font-size: medium;
-    }
+
     .btn:hover {
         transform: scale(1.05);
         cursor: pointer;
     }
 
+    .btn-my {
+        color: #563d7c;
+        border-color: #563d7c;
+    }
+
+    .btn-my:hover {
+        color: white;
+        background-color: #563d7c;
+    }
+
     td {padding: 10px 15px;}
-    .card {
+
+    .card-my {
         display: block;
         width: 100%;
         float: left
     }
 
     @media only screen and (min-width: 450px) {
-        .card {
+        .card-my {
             width: 50%;
         }
     }
 
     @media only screen and (min-width: 768px) {
-        .card {
+        .card-my {
             width: 33.333%;
         }
     }
 
     @media only screen and (min-width: 1000px) {
-        .card {
+        .card-my {
             width: 25%;
         }
     }
     .product {
         display: block;
-        border: 2px solid #ccf7ee;
+        border: 2px solid #563d7c;
         border-radius: 3px;
         position: relative;
         background: #fff;
         margin: 0 20px 20px 0;
         padding: 20px;
         text-decoration: none;
-        color: #474747;
+        color: black;
         z-index: 0;
         height: 200px;
     }
@@ -69,11 +73,20 @@
         transform: scale(1.05);
         cursor: pointer;
     }
+
+    .product:hover div {
+        color: black;
+    }
+
+    .btn-done {
+        width: 100%;
+        padding-right: 42px;
+    }
 </style>
 
 <div style="margin: 20px">
     <form action="projectListOut.html">
-        <button class="btn" type="submit">Назад к проектам</button>
+        <button class="btn btn-secondary btn-sm" type="submit">Назад к проектам</button>
     </form>
 
     <h1>{{ title }}</h1>
@@ -86,23 +99,24 @@
             <td>{{ name }} {{ surname }}</td>
         </tr>
         <tr>
-            <td >Проект создан:</td>
+            <td>Проект создан:</td>
             <td>{{ creation_date }}</td>
         </tr>
     </table>
 
     <ul style="padding-right: 20px;">
     {{ #tasks }}
-        <li class="card">
+        <li class="card-my">
             <a href="taskOut.html" class="product">
                 <h3>{{ task.title }}</h3>
                 <div>Исполнитель: {{ task.name }} {{ task.surname }}</div>
                 <div>Срок выполнения: {{ task.deadline }}</div>
                 <p>{{ task.description }}</p>
             </a>
-
+            <form action="projectOut.html">
+                <button class="btn btn-done" type="submit">Выполнено!</button>
+            </form>
         </li>
     {{ /tasks }}
     </ul>
-
 </div>

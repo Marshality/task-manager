@@ -1,45 +1,62 @@
 <style>
+    .btn:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .btn-my {
+        margin: 20px 0;
+        color: #563d7c;
+        border-color: #563d7c;
+    }
+
+    .btn-my:hover {
+        color: white;
+        background-color: #563d7c;
+    }
+
     td {padding: 10px 15px;}
-    .card {
+
+    .card-my {
         display: block;
         width: 100%;
         float: left
     }
 
     @media only screen and (min-width: 450px) {
-        .card {
+        .card-my {
             width: 50%;
         }
     }
 
     @media only screen and (min-width: 768px) {
-        .card {
+        .card-my {
             width: 33.333%;
         }
     }
 
     @media only screen and (min-width: 1000px) {
-        .card {
+        .card-my {
             width: 25%;
         }
     }
     .product {
         display: block;
-        border: 2px solid #ccf7ee;
+        border: 2px solid #563d7c;
         border-radius: 3px;
         position: relative;
         background: #fff;
         margin: 0 20px 20px 0;
         padding: 20px;
         text-decoration: none;
-        color: #474747;
+        color: black;
         z-index: 0;
         height: 200px;
     }
 
     .product p {
         position: relative;
-        margin: 20px 0 0 0;
+        margin: 0;
         margin-top: 10px;
         font-size: 1em;
         line-height: 1.4em;
@@ -66,6 +83,11 @@
     .product:hover {
         transform: scale(1.05);
         cursor: pointer;
+        text-decoration: none;
+    }
+
+    .product:hover div {
+        color: black;
     }
 </style>
 
@@ -74,7 +96,7 @@
 <div style="margin: 20px;">
     <ul style="padding-right: 20px;">
         {{ #projects }}
-        <li class="card">
+        <li class="card-my">
             <a href="projectOut.html" class="product">
                 <h3>{{ project.title }}</h3>
                 <div>Создатель: {{ project.name }} {{ project.surname }}</div>
