@@ -7,22 +7,29 @@
 
 #include "Types.h"
 
-template <typename Object>
-class Meta {
+
+class BaseMeta {
 public:
-    Meta();
+    BaseMeta(std::string&& tableName, string_set&& fieldsNames) :
+        _tableName(std::move(tableName)), _fieldsNames(fieldsNames) {}
 
     const std::string& tableName() const {
-        return tableName_;
+        return _tableName;
     }
 
     bool hasField(const std::string& fieldName) const {
-        fieldsNames.find(fieldName) != fieldsNames.end();
+        return _fieldsNames.find(fieldName) != _fieldsNames.end();
     }
 
-private:
-    std::string tableName_;
-    string_set fieldsNames;
+protected:
+    std::string _tableName;
+    string_set _fieldsNames;
+};
+
+
+template <typename Object>
+struct Meta : public BaseMeta {
+    Meta();
 };
 
 

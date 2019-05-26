@@ -5,21 +5,18 @@
 #ifndef MAIN_TASKCOMMAND_H
 #define MAIN_TASKCOMMAND_H
 
-#include <iostream>
 #include "BaseCommand.h"
 #include "task/Task.h"
-#include "user/User.h"
-#include "project/Project.h"
 
 
-class TaskCommand : public BaseCommand {
+class GetTaskCommand : public BaseCommand {
 public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        auto task = Task::getOne({{"id", "1"}});
+        auto task = Task::getOne(_request.OPTIONS);
 
-        renderedPage = renderer.taskPage(task);
+        _renderedPage = _renderer.taskPage(task);
     }
 };
 

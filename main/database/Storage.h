@@ -21,6 +21,8 @@ public:
     template <typename Object> std::shared_ptr<Object> getOne(const string_map& kwargs) const;
     template <typename Object> std::shared_ptr<Set<Object>> getMany(const string_map& kwargs) const;
 
+    template <typename Object> void create(const string_map& kwargs) const;
+
 private:
     explicit Storage(const std::string& connectionConfig);
 
@@ -28,21 +30,26 @@ private:
 
     template <typename Object> Meta<Object>& getMeta() const;
 
-    template <typename Object> std::shared_ptr<ResultSet> getQuery(const string_map& kwargs) const;
+    std::shared_ptr<ResultSet> getQuery(const string_map& kwargs, const BaseMeta& meta) const;
+    void createQuery(const string_map& kwargs, const BaseMeta& meta) const;
 };
 
-// Implementation
+// Implementation template methods
 
 // Public methods
 
 template <typename Object>
 std::shared_ptr<Object> Storage::getOne(const string_map& kwargs) const {
-    return std::make_shared<Object>(getQuery<Object>(kwargs), 0);
+    return std::make_shared<Object>(getQuery(kwargs, getMeta<Object>()), 0);
 }
 
 template <typename Object>
 std::shared_ptr<Set<Object>> Storage::getMany(const string_map& kwargs) const {
-    return std::make_shared<Set<Object>>(getQuery<Object>(kwargs));
+    return std::make_shared<Set<Object>>(getQuery(kwargs, getMeta<Object>()));
+}
+
+template <typename Object> void Storage::create(const string_map& kwargs) const {
+    createQuery(kwargs, getMeta<Object>());
 }
 
 // Private methods
@@ -52,36 +59,6 @@ Meta<Object>& Storage::getMeta() const {
     static Meta<Object> metaInstance;
 
     return metaInstance;
-}
-
-template <typename Object>
-std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs) const {
-    std::string statement = "SELECT * FROM ";
-    statement += getMeta<Object>().tableName();
-
-    if (!kwargs.empty()) {
-        statement += " WHERE ";
-
-        int argsCount = static_cast<int>(kwargs.size());
-        const char* params[argsCount];
-        int i = 0;
-
-        for (auto& pair : kwargs) {
-            statement += pair.first;
-            statement += "=$";
-
-            params[i] = pair.second.c_str();
-
-            statement += std::to_string(++i);
-            statement += ',';
-        }
-
-        statement.back() = ';';
-
-        return connection.executeWithParams(statement, params, argsCount);
-    }
-
-    return connection.execute(statement);
 }
 
 

@@ -8,11 +8,12 @@
 
 template <>
 Meta<Project>::Meta() :
-        tableName_("projects"),
-        fieldsNames {
-                "id",
-                "owner_id",
-                "title",
-                "description",
-                "creation_date"
-        } {}
+        BaseMeta(
+                "projects",
+                {
+                        "id",
+                        "owner_id",
+                        "title",
+                        "description",
+                        "creation_date"
+                }) {}
