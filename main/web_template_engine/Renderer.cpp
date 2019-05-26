@@ -96,3 +96,23 @@ std::string Renderer::renderTask(std::shared_ptr<Task> task) {
 
     return mstch::render(path("task.html"), context);
 }
+
+std::string Renderer::renderAddTask(std::shared_ptr<User> users) {
+    mstch::array arr;
+
+    users->bypass([&arr] (User& user) {
+
+        arr.push_back(
+                mstch::map{{"user", mstch::map{
+                        {"name", std::string(user.name())},
+                        {"surname", std::string(user.surname())},
+                }}}
+        );
+    });
+
+    mstch::map context{
+            {"users", arr}
+    };
+
+    return mstch::render(path("addTask.html"), context);
+}
