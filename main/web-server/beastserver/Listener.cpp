@@ -4,11 +4,9 @@
 
 #include "Listener.h"
 
-Listener::Listener(boost::asio::io_context& ioc, tcp::endpoint endpoint,
-                   std::shared_ptr<std::string const> const& _docRoot) :
+Listener::Listener(boost::asio::io_context& ioc, tcp::endpoint endpoint) :
         acceptor(ioc),
-        socket(ioc),
-        docRoot(_docRoot) {
+        socket(ioc) {
     boost::system::error_code ec;
 
     acceptor.open(endpoint.protocol(), ec);

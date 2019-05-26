@@ -15,10 +15,9 @@ namespace http = boost::beast::http;    // from <boost/beast/http.hpp>
 class Listener : public std::enable_shared_from_this<Listener> {
     tcp::acceptor acceptor;
     tcp::socket socket;
-    std::shared_ptr<std::string const> docRoot;
 
 public:
-    Listener(boost::asio::io_context& ioc, tcp::endpoint endpoint, std::shared_ptr<std::string const> const& _docRoot);
+    Listener(boost::asio::io_context& ioc, tcp::endpoint endpoint);
 
     void run();
     void accept();
