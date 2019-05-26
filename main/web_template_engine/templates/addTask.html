@@ -18,7 +18,8 @@
 </style>
 <div style="margin: 20px">
     <div>
-        <form action="projectOut.html" style="display: inline;">
+        <form action="projectOut.html" style="display: inline;" method="post">
+            <input type="hidden" name="password" value="{{password}}">
             <button class="btn btn-secondary btn-sm" type="submit">Отменить создание</button>
         </form>
     </div>
@@ -45,6 +46,7 @@
             <label class="control-label" for="date">Дедлайн:</label>
             <input class="form-control" id="date" name="date" placeholder="ГГГГ-ММ-ДД" type="text"/>
         </div>
+        <input type="hidden" name="password" value="{{password}}">
         <div style="text-align: center;" class="row">
             <button class="btn btn-my" type="submit">Создать</button>
         </div>
