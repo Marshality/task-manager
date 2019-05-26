@@ -40,6 +40,7 @@
             width: 25%;
         }
     }
+
     .product {
         display: block;
         border: 2px solid #563d7c;
@@ -93,16 +94,27 @@
 
     <p style="color: grey;"> {{ description }} </p>
 
-    <table>
-        <tr>
-            <td>Создатель:</td>
-            <td>{{ name }} {{ surname }}</td>
-        </tr>
-        <tr>
-            <td>Проект создан:</td>
-            <td>{{ creation_date }}</td>
-        </tr>
-    </table>
+    <div class="container main-body">
+        <div class="row">
+            <div class="col-10">
+                <table>
+                    <tr>
+                        <td>Создатель:</td>
+                        <td>{{ name }} {{ surname }}</td>
+                    </tr>
+                    <tr>
+                        <td>Проект создан:</td>
+                        <td>{{ creation_date }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+                <form action="addTaskOut.html">
+                    <button class="btn btn-my" type="submit">Добавить задачу</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <ul style="padding-right: 20px;">
     {{ #tasks }}
