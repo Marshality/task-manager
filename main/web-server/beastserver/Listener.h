@@ -5,24 +5,12 @@
 #ifndef MAIN_LISTENER_H
 #define MAIN_LISTENER_H
 
-#include <boost/beast/core.hpp>
-#include <boost/beast/http.hpp>
-#include <boost/beast/version.hpp>
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/config.hpp>
-#include <algorithm>
-#include <functional>
-#include <iostream>
-#include <memory>
-#include <string>
+#include "libraries.h"
+
 #include "Session.h"
 
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;    // from <boost/beast/http.hpp>
-
-void fail(boost::system::error_code ec, char const* what) {
-    std::cerr << what << ": " << ec.message() << "\n";
-}
 
 class Listener : public std::enable_shared_from_this<Listener> {
     tcp::acceptor acceptor;

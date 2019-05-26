@@ -13,27 +13,25 @@ Listener::Listener(boost::asio::io_context& ioc, tcp::endpoint endpoint,
 
     acceptor.open(endpoint.protocol(), ec);
     if (ec) {
-        fail(ec, "open");
+        std::cerr << "open: " << ec.message() << "\n";
         return;
     }
 
-    // Allow address reuse
     acceptor.set_option(boost::asio::socket_base::reuse_address(true), ec);
     if (ec) {
-        fail(ec, "set_option");
+        std::cerr << "set_option: " << ec.message() << "\n";
         return;
     }
 
     acceptor.bind(endpoint, ec);
     if (ec) {
-        fail(ec, "bind");
+        std::cerr << "bind: " << ec.message() << "\n";
         return;
     }
 
     acceptor.listen(boost::asio::socket_base::max_listen_connections, ec);
-
     if (ec) {
-        fail(ec, "listen");
+        std::cerr << "listen: " << ec.message() << "\n";
         return;
     }
 }
@@ -55,7 +53,7 @@ void Listener::accept() {
 
 void Listener::onAccept(boost::system::error_code ec) {
     if (ec) {
-        fail(ec, "accept");
+        std::cerr << "accept: " << ec.message() << "\n";
     } else {
         std::make_shared<Session>(std::move(socket), docRoot)->run();
     }
