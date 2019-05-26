@@ -18,7 +18,7 @@ std::string Renderer::renderMain() {
     return path("main.html");
 }
 
-std::string Renderer::renderProjectList(std::shared_ptr<Set<Project>> projects) {
+std::string Renderer::renderProjectList(Request& request, std::shared_ptr<Set<Project>> projects) {
 
     mstch::array arr;
 
@@ -39,13 +39,15 @@ std::string Renderer::renderProjectList(std::shared_ptr<Set<Project>> projects) 
     });
 
     mstch::map context{
-            {"projects", arr}
+            {"projects", arr},
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)}
     };
 
     return mstch::render(path("projectsList.html"), context);
 }
 
-std::string Renderer::renderProject(std::shared_ptr<Project> project) {
+std::string Renderer::renderProject(Request& request, std::shared_ptr<Project> project) {
 
     auto creator = project->owner();
     auto tasks = project->tasks();
@@ -73,13 +75,16 @@ std::string Renderer::renderProject(std::shared_ptr<Project> project) {
             {"name", std::string(creator->name())},
             {"surname", std::string(creator->surname())},
             {"creation_date", std::string(project->creation_date())},
-            {"tasks", arr}
+            {"tasks", arr},
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)},
+            {"project_id", std::string(request.OPTIONS["project_id"])}
     };
 
     return mstch::render(path("project.html"), context);
 }
 
-std::string Renderer::renderTask(std::shared_ptr<Task> task) {
+std::string Renderer::renderTask(Request& request, std::shared_ptr<Task> task) {
 
     auto user = task->user();
     auto project = task->project();
@@ -91,13 +96,17 @@ std::string Renderer::renderTask(std::shared_ptr<Task> task) {
             {"name", std::string(user->name())},
             {"surname", std::string(user->surname())},
             {"creation_date", std::string(task->creation_date())},
-            {"deadline", std::string(task->deadline())}
+            {"deadline", std::string(task->deadline())},
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)},
+            {"project_id", std::string(request.OPTIONS["project_id"])},
+            {"task_id", std::string(request.OPTIONS["task_id"])}
     };
 
     return mstch::render(path("task.html"), context);
 }
 
-std::string Renderer::renderAddTask(std::shared_ptr<Set<User>> users) {
+std::string Renderer::renderAddTask(Request& request, std::shared_ptr<Set<User>> users) {
     mstch::array arr;
 
     users->bypass([&arr] (User& user) {
@@ -111,12 +120,20 @@ std::string Renderer::renderAddTask(std::shared_ptr<Set<User>> users) {
     });
 
     mstch::map context{
-            {"users", arr}
+            {"users", arr},
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)},
+            {"project_id", std::string(request.OPTIONS["project_id"])}
     };
 
     return mstch::render(path("addTask.html"), context);
 }
 
-std::string Renderer::renderAddProject() {
-    return path("addProject.html");
+std::string Renderer::renderAddProject(Request& request) {
+    mstch::map context{
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)}
+    };
+
+    return mstch::render(path("addProject.html"), context);
 }

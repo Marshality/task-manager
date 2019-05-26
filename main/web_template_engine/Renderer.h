@@ -8,30 +8,32 @@
 #include "project/Project.h"
 #include "user/User.h"
 
+#include "Request.h"
+
 class Renderer {
 public:
-    std::string mainPage() {
+    std::string mainPage(Request& request) {
         return base(renderMain(), "Главная");
     }
 
-    std::string projectListPage(std::shared_ptr<Set<Project>> projects) {
-        return base(renderProjectList(projects), "Список проектов");
+    std::string projectListPage(Request& _request, std::shared_ptr<Set<Project>> projects) {
+        return base(renderProjectList(_request, projects), "Список проектов");
     }
 
-    std::string projectPage(std::shared_ptr<Project> project) {
-        return base(renderProject(project), "Проект");
+    std::string projectPage(Request& _request, std::shared_ptr<Project> project) {
+        return base(renderProject(_request, project), "Проект");
     }
 
-    std::string taskPage(std::shared_ptr<Task> task) {
-        return base(renderTask(task), "Задача");
+    std::string taskPage(Request& _request, std::shared_ptr<Task> task) {
+        return base(renderTask(_request, task), "Задача");
     }
 
-    std::string addTask(std::shared_ptr<Set<User>> users) {
-        return base(renderAddTask(users), "Добаление задачи");
+    std::string addTask(Request& _request, std::shared_ptr<Set<User>> users) {
+        return base(renderAddTask(_request, users), "Добаление задачи");
     }
 
-    std::string addProject() {
-        return base(renderAddProject(), "Добаление проекта");
+    std::string addProject(Request& _request) {
+        return base(renderAddProject(_request), "Добаление проекта");
     }
 
 private:
@@ -40,9 +42,9 @@ private:
     std::string base(std::string body, std::string pageTitle);
 
     std::string renderMain();
-    std::string renderProjectList(std::shared_ptr<Set<Project>> projects);
-    std::string renderProject(std::shared_ptr<Project> project);
-    std::string renderTask(std::shared_ptr<Task> task);
-    std::string renderAddTask(std::shared_ptr<Set<User>> users);
-    std::string renderAddProject();
+    std::string renderProjectList(Request& request, std::shared_ptr<Set<Project>> projects);
+    std::string renderProject(Request& request, std::shared_ptr<Project> project);
+    std::string renderTask(Request& request, std::shared_ptr<Task> task);
+    std::string renderAddTask(Request& request, std::shared_ptr<Set<User>> users);
+    std::string renderAddProject(Request& request);
 };
