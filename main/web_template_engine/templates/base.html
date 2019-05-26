@@ -3,14 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ pageTitle }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </head>
 
-<body style="margin: 0; padding: 0">
-    <header style="text-align: center; background: #ccf7ee; color: black; font-size: 30px;">
-        <a href="mainOut.html" style="text-decoration: none; color: black">CRM system BY NDSL</a>
+<style>
+    .btn:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+    .btn-my {
+        color: #563d7c;
+        border-color: #563d7c;
+    }
+    .btn-my:hover {
+        color: white;
+        background-color: #563d7c;
+    }
+    a {
+        text-decoration: none;
+        color: white
+    }
+    style {
+        background: #563d7c;
+        color: black;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<body>
+    <header class="row">
+        <div class="col-11 ml-3" style="font-size: 30px;">
+            <a href="/">Task Manager</a>
+        </div>
+        <div class="col text-white m-auto">
+            <span>BY NDSL</span>
+        </div>
     </header>
-
-    {{{ body }}}
-
+    <div style="margin: 0 50px">
+        {{{ body }}}
+    </div>
 </body>
 </html>

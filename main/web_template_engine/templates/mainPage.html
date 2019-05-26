@@ -1,23 +1,16 @@
 <style>
-    button {
-        margin-top: 12%;
-        width: 200px;
-        height: 50px;
-        background-color: #ccf7ee;
-        border: none;
-        font-size: x-large;
-    }
-    button:hover {
-        transform: scale(1.05);
-        cursor: pointer;
+    form {
+        margin-top: 20px;
     }
 </style>
 
-
 <div style="margin: 20px; text-align: center;">
     <h1 style="margin-top: 5%;">Добро пожаловать!</h1>
-    <h3> Нажмите на кнопку ниже, чтобы перейти к списку ваших проектов</h3>
-    <form action="projectListOut.html">
-        <button type="submit">Мои проекты</button>
+    <h3> Войдите в аккаунт, чтобы перейти к списку ваших проектов</h3>
+    <form action="signin/">
+        <button class="btn btn-my btn-lg" type="submit">Войти</button>
+    </form>
+    <form action="signup/">
+        <button class="btn btn-my btn-lg" type="submit">Зарегистрироваться</button>
     </form>
 </div>

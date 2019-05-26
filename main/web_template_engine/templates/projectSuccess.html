@@ -1,0 +1,17 @@
+<style>
+    form {
+        margin-top: 20px;
+    }
+</style>
+
+<div style="margin: 20px; text-align: center;">
+    <p>Проект успешно добавлен</p>
+    <form action="{{ username }}/" method="post">
+        <input type="hidden" name="password" value="{{password}}">
+        <button class="btn btn-my btn-lg" type="submit">Обратно к проектам</button>
+    </form>
+    <form action="{{ username }}/{{ project_id }}" method="post">
+        <input type="hidden" name="password" value="{{password}}">
+        <button class="btn btn-my btn-lg" type="submit">К созданному проекту</button>
+    </form>
+</div>
