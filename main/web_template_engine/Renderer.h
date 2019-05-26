@@ -29,11 +29,15 @@ public:
     }
 
     std::string addTask(Request& _request, std::shared_ptr<Set<User>> users) {
-        return base(renderAddTask(_request, users), "Добаление задачи");
+        return base(renderAddTask(_request, users), "Добавление задачи");
     }
 
     std::string addProject(Request& _request) {
-        return base(renderAddProject(_request), "Добаление проекта");
+        return base(renderAddProject(_request), "Добавление проекта");
+    }
+
+    std::string loginSuccess(Request& _request) {
+        return base(renderLoginSuccess(_request), "Успешный вход");
     }
 
 private:
@@ -47,4 +51,5 @@ private:
     std::string renderTask(Request& request, std::shared_ptr<Task> task);
     std::string renderAddTask(Request& request, std::shared_ptr<Set<User>> users);
     std::string renderAddProject(Request& request);
+    std::string renderLoginSuccess(Request& request);
 };

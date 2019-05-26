@@ -138,3 +138,12 @@ std::string Renderer::renderAddProject(Request& request) {
 
     return mstch::render(path("addProject.html"), context);
 }
+
+std::string Renderer::renderLoginSuccess(Request& request) {
+    mstch::map context{
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)}
+    };
+
+    return mstch::render(path("loginSuccess.html"), context);
+}
