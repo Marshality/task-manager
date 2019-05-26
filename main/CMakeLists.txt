@@ -29,7 +29,7 @@ add_executable(main
         connection/ResultSet.cpp
         web_template_engine/Renderer.cpp
         web-server/beastserver/server.cpp
-        )
+        web-server/beastserver/HttpServer.cpp web-server/beastserver/HttpServer.h web-server/beastserver/Session.cpp web-server/beastserver/Session.h web-server/beastserver/Listener.cpp web-server/beastserver/Listener.h)
 
 target_include_directories(main PRIVATE .)
 target_include_directories(main PRIVATE objects)

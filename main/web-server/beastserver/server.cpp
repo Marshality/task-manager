@@ -15,6 +15,8 @@
 #include <vector>
 
 #include "../../Controller.h"
+#include "Listener.h"
+
 
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;    // from <boost/beast/http.hpp>
@@ -52,20 +54,12 @@ std::string pathCat(boost::beast::string_view base, boost::beast::string_view pa
     if (base.empty())
         return path.to_string();
     std::string result = base.to_string();
-#if BOOST_MSVC
-    char constexpr path_separator = '\\';
-    if(result.back() == path_separator)
-        result.resize(result.size() - 1);
-    result.append(path.data(), path.size());
-    for(auto& c : result)
-        if(c == '/')
-            c = path_separator;
-#else
+
     char constexpr path_separator = '/';
     if (result.back() == path_separator)
         result.resize(result.size() - 1);
     result.append(path.data(), path.size());
-#endif
+
     return result;
 }
 
@@ -260,73 +254,6 @@ public:
         socket.shutdown(tcp::socket::shutdown_send, ec);
 
         // At this point the connection is closed gracefully
-    }
-};
-
-//------------------------------------------------------------------------------
-
-class Listener : public std::enable_shared_from_this<Listener> {
-    tcp::acceptor acceptor;
-    tcp::socket socket;
-    std::shared_ptr<std::string const> docRoot;
-
-public:
-    Listener(boost::asio::io_context& ioc, tcp::endpoint endpoint, std::shared_ptr<std::string const> const& _docRoot) :
-            acceptor(ioc),
-            socket(ioc),
-            docRoot(_docRoot) {
-        boost::system::error_code ec;
-
-        acceptor.open(endpoint.protocol(), ec);
-        if (ec) {
-            fail(ec, "open");
-            return;
-        }
-
-        // Allow address reuse
-        acceptor.set_option(boost::asio::socket_base::reuse_address(true), ec);
-        if (ec) {
-            fail(ec, "set_option");
-            return;
-        }
-
-        acceptor.bind(endpoint, ec);
-        if (ec) {
-            fail(ec, "bind");
-            return;
-        }
-
-        acceptor.listen(boost::asio::socket_base::max_listen_connections, ec);
-
-        if (ec) {
-            fail(ec, "listen");
-            return;
-        }
-    }
-
-    void run() {
-        if (!acceptor.is_open()) {
-            return;
-        }
-
-        accept();
-    }
-
-    void accept() {
-        acceptor.async_accept(socket, std::bind(
-                &Listener::onAccept,
-                shared_from_this(),
-                std::placeholders::_1));
-    }
-
-    void onAccept(boost::system::error_code ec) {
-        if (ec) {
-            fail(ec, "accept");
-        } else {
-            std::make_shared<Session>(std::move(socket), docRoot)->run();
-        }
-
-        accept();
     }
 };
 
