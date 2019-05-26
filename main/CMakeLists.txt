@@ -40,5 +40,6 @@ target_include_directories(main PRIVATE objects/base)
 target_include_directories(main PRIVATE commands)
 target_include_directories(main PRIVATE connection)
 target_include_directories(main PRIVATE connection/exceptions)
+target_include_directories(main PRIVATE web-server)
 
 

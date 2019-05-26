@@ -6,8 +6,9 @@
 #define MAIN_REQUESTHANDLER_H
 
 #include "libraries.h"
-#include "../../Controller.h"
-#include "../../Request.h"
+#include "Controller.h"
+#include "Request.h"
+#include "parsers.h"
 
 template <class Send>
 class RequestHandler {
@@ -21,11 +22,16 @@ public:
 
 private:
     Send send;
+    parsers urlParser;
+    PostParser postParser;
 };
 
 template <class Send>
 template <class Body, class Allocator>
 void RequestHandler<Send>::handle(http::request<Body, boost::beast::http::basic_fields<Allocator>>&& req) {
+
+    http::request<http::string_body> r;
+
     auto const badRequest = [&req](boost::beast::string_view why) {
         http::response<http::string_body> res{http::status::bad_request, req.version()};
         res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
@@ -47,7 +53,7 @@ void RequestHandler<Send>::handle(http::request<Body, boost::beast::http::basic_
     };
 
     // Make sure we can handle the method
-    if (req.method() != http::verb::get && req.method() != http::verb::head) {
+    if (req.method() != http::verb::get && req.method() != http::verb::head && req.method() != http::verb::post) {
         return send(badRequest("Unknown HTTP-method"));
     }
 
@@ -64,11 +70,25 @@ void RequestHandler<Send>::handle(http::request<Body, boost::beast::http::basic_
         Controller c;
         Request r;
 
-        std::string page = c.task(r);
+        std::string page = "<!DOCTYPE html>\n"
+                           "<html lang=\"en\">\n"
+                           "<head>\n"
+                           "    <meta charset=\"UTF-8\">\n"
+                           "    <title>Title</title>\n"
+                           "</head>\n"
+                           "<body>\n"
+                           "\n"
+                           "<form name=\"form\" action=\"\" method=\"post\">\n"
+                           "    <input type=\"hidden\" name=\"form\" value=\"form1\">\n"
+                           "    <p><input type=\"text\" name=\"str1\"></p>\n"
+                           "    <p><input type=\"text\" name=\"str2\"></p>\n"
+                           "    <p><input type=\"submit\" value=\"Отправить2\"></p>\n"
+                           "</form>\n"
+                           "\n"
+                           "</body>\n"
+                           "</html>";
 
-        for (auto& c : page) {
-            body.push_back(c);
-        }
+        body.append(page);
     } else {
         return send(notFound(req.target()));
     }
