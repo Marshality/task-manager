@@ -97,7 +97,7 @@ std::string Renderer::renderTask(std::shared_ptr<Task> task) {
     return mstch::render(path("task.html"), context);
 }
 
-std::string Renderer::renderAddTask(std::shared_ptr<User> users) {
+std::string Renderer::renderAddTask(std::shared_ptr<Set<User>> users) {
     mstch::array arr;
 
     users->bypass([&arr] (User& user) {
@@ -115,4 +115,8 @@ std::string Renderer::renderAddTask(std::shared_ptr<User> users) {
     };
 
     return mstch::render(path("addTask.html"), context);
+}
+
+std::string Renderer::renderAddProject() {
+    return path("addProject.html");
 }

@@ -26,8 +26,12 @@ public:
         return base(renderTask(task), "Задача");
     }
 
-    std::string addTask(std::shared_ptr<User> user) {
-        return base(renderAddTask(user), "Добаление задачи");
+    std::string addTask(std::shared_ptr<Set<User>> users) {
+        return base(renderAddTask(users), "Добаление задачи");
+    }
+
+    std::string addProject() {
+        return base(renderAddProject(), "Добаление проекта");
     }
 
 private:
@@ -39,6 +43,6 @@ private:
     std::string renderProjectList(std::shared_ptr<Set<Project>> projects);
     std::string renderProject(std::shared_ptr<Project> project);
     std::string renderTask(std::shared_ptr<Task> task);
-    std::string renderAddTask(std::shared_ptr<User> user);
-
+    std::string renderAddTask(std::shared_ptr<Set<User>> users);
+    std::string renderAddProject();
 };
