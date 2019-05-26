@@ -16,7 +16,7 @@ public:
     void execute() override {
         auto projects = Project::getMany(_request.OPTIONS);
 
-        _renderedPage = _renderer.projectListPage(projects);
+        _renderedPage = _renderer.projectListPage(_request, projects);
     }
 };
 

@@ -24,6 +24,7 @@ private:
     Send send;
     parsers urlParser;
     PostParser postParser;
+    Controller controller;
 };
 
 template <class Send>
@@ -65,33 +66,44 @@ void RequestHandler<Send>::handle(http::request<Body, boost::beast::http::basic_
 
     // Routing
     http::string_body::value_type body;
+    Request request;
+    request.POST = postParser.parse(req.body().data());
 
-    if (req.target() == "/task") {
-        Controller c;
-        Request r;
+    auto urlParams = urlParser.parse(req.target().data());
+    auto urlParamsCount = urlParams.size();
+    std::string page;
 
-        std::string page = "<!DOCTYPE html>\n"
-                           "<html lang=\"en\">\n"
-                           "<head>\n"
-                           "    <meta charset=\"UTF-8\">\n"
-                           "    <title>Title</title>\n"
-                           "</head>\n"
-                           "<body>\n"
-                           "\n"
-                           "<form name=\"form\" action=\"\" method=\"post\">\n"
-                           "    <input type=\"hidden\" name=\"form\" value=\"form1\">\n"
-                           "    <p><input type=\"text\" name=\"str1\"></p>\n"
-                           "    <p><input type=\"text\" name=\"str2\"></p>\n"
-                           "    <p><input type=\"submit\" value=\"Отправить2\"></p>\n"
-                           "</form>\n"
-                           "\n"
-                           "</body>\n"
-                           "</html>";
-
-        body.append(page);
+    if (urlParamsCount == 0) {
+        page = controller.index(request);
+    } else if (urlParamsCount == 1) {
+        if (urlParams[0] == "signin") {
+//            page = controller.signIn(request);
+        } else if (urlParams[0] == "signup") {
+//            page = controller.signUp(request);
+        } else if (urlParams[0] == "success") {
+//            page = controller.success(request);
+        }
+    } else if (urlParamsCount == 2) {
+        if (urlParams[1] == "new") {
+            page = controller.createProject(request);
+        } else if (urlParams[1] == "success") {
+//            page = controller.projectSuccess(request);
+        } else {
+            page = controller.project(request); // необходима валидация на число
+        }
+    } else if (urlParamsCount == 3) {
+        if (urlParams[2] == "new") {
+            page = controller.createTask(request);
+        } else if (urlParams[2] == "success") {
+//            page = controller.taskSuccess(request);
+        } else {
+            page = controller.task(request); // необходима валидация на число
+        }
     } else {
         return send(notFound(req.target()));
     }
+
+    body.append(page);
 
     // Cache the size since we need it after the move
     auto const size = body.length();

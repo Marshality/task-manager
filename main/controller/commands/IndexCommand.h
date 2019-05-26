@@ -13,7 +13,7 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        _renderedPage = _renderer.mainPage();
+        _renderedPage = _renderer.mainPage(_request);
     }
 };
 

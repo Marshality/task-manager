@@ -16,7 +16,7 @@ public:
     void execute() override {
         auto task = Task::getOne(_request.OPTIONS);
 
-        _renderedPage = _renderer.taskPage(task);
+        _renderedPage = _renderer.taskPage(_request, task);
     }
 };
 

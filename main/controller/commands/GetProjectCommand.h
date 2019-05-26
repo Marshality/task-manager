@@ -16,7 +16,7 @@ public:
     void execute() override {
         auto project = Project::getOne(_request.OPTIONS);
 
-        _renderedPage = _renderer.projectPage(project);
+        _renderedPage = _renderer.projectPage(_request, project);
     }
 };
 
