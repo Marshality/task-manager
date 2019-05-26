@@ -82,7 +82,7 @@
             <div class="col-10">
             </div>
             <div class="col">
-                <form action="addProjectOut.html" method="post">
+                <form action="{{ username }}/new" method="post">
                     <input type="hidden" name="password" value="{{password}}">
                     <button class="btn btn-my" type="submit">Добавить проект</button>
                 </form>
@@ -93,7 +93,7 @@
     <ul style="padding-right: 20px;">
         {{ #projects }}
         <li class="card-my">
-            <form action="projectOut.html" method="post">
+            <form action="{{ username }}/{{ project_id }}" method="post">
                 <input type="hidden" name="password" value="{{password}}">
                 <button class="product">
                     <h3>{{ project.title }}</h3>

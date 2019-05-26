@@ -28,6 +28,7 @@ std::string Renderer::renderProjectList(Request& request, std::shared_ptr<Set<Pr
         arr.push_back(
                 mstch::map{
                         {"project", mstch::map{
+                                {"project_id", std::string(project.id())},
                                 {"title", std::string(project.title())},
                                 {"description", std::string(project.description())},
                                 {"name", std::string(creator->name())},
@@ -60,6 +61,7 @@ std::string Renderer::renderProject(Request& request, std::shared_ptr<Project> p
 
         arr.push_back(
                 mstch::map{{"task", mstch::map{
+                        {"task", std::string(task.id())},
                         {"title", std::string(task.title())},
                         {"description", std::string(task.description())},
                         {"name", std::string(executor->name())},
@@ -99,8 +101,7 @@ std::string Renderer::renderTask(Request& request, std::shared_ptr<Task> task) {
             {"deadline", std::string(task->deadline())},
             {"username", std::string(request.AUTH.first)},
             {"password", std::string(request.AUTH.second)},
-            {"project_id", std::string(request.OPTIONS["project_id"])},
-            {"task_id", std::string(request.OPTIONS["task_id"])}
+            {"project_id", std::string(request.OPTIONS["project_id"])}
     };
 
     return mstch::render(path("task.html"), context);

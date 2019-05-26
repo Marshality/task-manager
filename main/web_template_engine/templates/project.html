@@ -70,7 +70,7 @@
 </style>
 
 <div style="margin: 20px">
-    <form action="projectListOut.html" method="post">
+    <form action="{{ username }}" method="post">
         <input type="hidden" name="password" value="{{password}}">
         <button class="btn btn-secondary btn-sm" type="submit">Назад к проектам</button>
     </form>
@@ -94,7 +94,7 @@
                 </table>
             </div>
             <div class="col">
-                <form action="addTaskOut.html" method="post">
+                <form action="{{ username }}/{{ project_id }}/new" method="post">
                     <input type="hidden" name="password" value="{{password}}">
                     <button class="btn btn-my" type="submit">Добавить задачу</button>
                 </form>
@@ -105,7 +105,7 @@
     <ul style="padding-right: 20px;">
     {{ #tasks }}
         <li class="card-my">
-            <form action="projectOut.html" method="post">
+            <form action="{{ username }}/{{ project_id }}/{{ task.id }}" method="post">
                 <input type="hidden" name="password" value="{{password}}">
                 <button class="product">
                     <h3>{{ task.title }}</h3>
@@ -113,9 +113,6 @@
                     <div>Срок выполнения: {{ task.deadline }}</div>
                     <p>{{ task.description }}</p>
                 </button>
-            </form>
-            <form action="projectOut.html">
-                <button class="btn btn-done" type="submit">Выполнено!</button>
             </form>
         </li>
     {{ /tasks }}
