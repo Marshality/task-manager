@@ -80,7 +80,7 @@ std::string Renderer::renderProject(Request& request, std::shared_ptr<Project> p
             {"tasks", arr},
             {"username", std::string(request.AUTH.first)},
             {"password", std::string(request.AUTH.second)},
-            {"project_id", std::string(request.OPTIONS["project_id"])}
+            {"project_id", std::string(project->id())}
     };
 
     return mstch::render(path("project.html"), context);
@@ -146,4 +146,14 @@ std::string Renderer::renderLoginSuccess(Request& request) {
     };
 
     return mstch::render(path("loginSuccess.html"), context);
+}
+
+std::string Renderer::renderAddProjectSuccess(Request& request, std::shared_ptr<Project> project) {
+    mstch::map context{
+            {"username", std::string(request.AUTH.first)},
+            {"password", std::string(request.AUTH.second)},
+            {"project_id", std::string(project->id())}
+    };
+
+    return mstch::render(path("projectSuccess.html"), context);
 }

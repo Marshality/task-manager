@@ -40,6 +40,10 @@ public:
         return base(renderLoginSuccess(_request), "Успешный вход");
     }
 
+    std::string addProjectSuccess(Request& _request, std::shared_ptr<Project> project) {
+        return base(renderAddProjectSuccess(_request, project), "Успешный вход");
+    }
+
 private:
     FileToStringConverter path = FileToStringConverter("../web_template_engine/templates/");
 
@@ -52,4 +56,5 @@ private:
     std::string renderAddTask(Request& request, std::shared_ptr<Set<User>> users);
     std::string renderAddProject(Request& request);
     std::string renderLoginSuccess(Request& request);
+    std::string renderAddProjectSuccess(Request& request, std::shared_ptr<Project> project);
 };
