@@ -4,11 +4,10 @@
 
 #include "Session.h"
 
-Session::Session(tcp::socket _socket, std::shared_ptr<std::string const> const& _docRoot) :
+Session::Session(tcp::socket _socket) :
         socket(std::move(_socket)),
         strand(socket.get_executor()),
-        docRoot(_docRoot),
-        lambda(*this) {
+        handler(SendLambda(*this)) {
 }
 
 void Session::read() {
@@ -33,7 +32,7 @@ void Session::onRead(boost::system::error_code ec, std::size_t bytes_transferred
         return;
     }
 
-    handleRequest(*docRoot, std::move(req), lambda);
+    handler.handle(std::move(req));
 }
 
 void Session::onWrite(boost::system::error_code ec, std::size_t bytes_transferred, bool close) {

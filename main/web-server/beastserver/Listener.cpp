@@ -55,7 +55,7 @@ void Listener::onAccept(boost::system::error_code ec) {
     if (ec) {
         std::cerr << "accept: " << ec.message() << "\n";
     } else {
-        std::make_shared<Session>(std::move(socket), docRoot)->run();
+        std::make_shared<Session>(std::move(socket))->run();
     }
 
     accept();

@@ -6,6 +6,7 @@
 #define MAIN_SESSION_H
 
 #include "libraries.h"
+#include "RequestHandler.h"
 
 class Session : public std::enable_shared_from_this<Session> {
     struct SendLambda {
@@ -36,13 +37,12 @@ class Session : public std::enable_shared_from_this<Session> {
     tcp::socket socket;
     boost::asio::strand<boost::asio::io_context::executor_type> strand;
     boost::beast::flat_buffer buffer;
-    std::shared_ptr<std::string const> docRoot;
     http::request<http::string_body> req;
     std::shared_ptr<void> res;
-    SendLambda lambda;
+    RequestHandler<SendLambda> handler;
 
 public:
-    explicit Session(tcp::socket _socket, std::shared_ptr<std::string const> const& _docRoot);
+    explicit Session(tcp::socket _socket);
 
     void run();
 
