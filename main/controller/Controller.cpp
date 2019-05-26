@@ -17,11 +17,6 @@ std::string Controller::createTask(Request& request) {
     return execute(cmd);
 }
 
-std::string Controller::editTask(Request& request) {
-    EditTaskCommand cmd(_renderer, request);
-    return execute(cmd);
-}
-
 std::string Controller::deleteTask(Request& request) {
     DeleteTaskCommand cmd(_renderer, request);
     return execute(cmd);
@@ -29,11 +24,6 @@ std::string Controller::deleteTask(Request& request) {
 
 std::string Controller::createProject(Request& request) {
     CreateProjectCommand cmd(_renderer, request);
-    return execute(cmd);
-}
-
-std::string Controller::editProject(Request& request) {
-    EditProjectCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
@@ -45,10 +35,6 @@ std::string Controller::deleteProject(Request& request) {
 std::string Controller::createUser(Request& request) {
     CreateUserCommand cmd(_renderer, request);
     return execute(cmd);
-}
-
-std::string Controller::editUser(Request& request) {
-
 }
 
 std::string Controller::deleteUser(Request& request) {
