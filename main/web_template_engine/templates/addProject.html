@@ -1,0 +1,55 @@
+<style>
+    .btn:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .hdr {
+        margin: 30px 0;
+    }
+
+    .row {
+        margin-bottom: 30px;
+    }
+
+    input, textarea, select {
+        margin-left: 30px;
+        width: 75% !important;
+    }
+
+    label {
+        width: 20%;
+    }
+
+    .btn-my {
+        color: #563d7c;
+        border-color: #563d7c;
+        margin: auto;
+    }
+
+    .btn-my:hover {
+        color: white;
+        background-color: #563d7c;
+    }
+</style>
+<div style="margin: 20px">
+    <div>
+        <form action="projectListOut.html" style="display: inline;">
+            <button class="btn btn-secondary btn-sm" type="submit">Отменить создание</button>
+        </form>
+    </div>
+    <h2 class="hdr">Создайте новый проект</h2>
+    <form action = "projectListOut.html" method = "post">
+        <div class="row">
+            <label for="title">Название:</label>
+            <input class="" name="title" id="title">
+        </div>
+        <div class="row">
+            <label for="description">Описание проекта:</label>
+            <textarea class="form-control" name="description" id="description" aria-label="With textarea"></textarea>
+        </div>
+        <div style="text-align: center;" class="row">
+            <button class="btn btn-my" type="submit">Создать</button>
+        </div>
+    </form>
+</div>
