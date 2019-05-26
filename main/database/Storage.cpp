@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include "exceptions/NoSuchFieldException.h"
+#include "exceptions/EmptyCreateQueryException.h"
 
 
 std::string readConnectionConfig() {
@@ -66,7 +67,7 @@ std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs, const Bas
 
 void Storage::createQuery(const string_map& kwargs, const BaseMeta& meta) const {
     if (kwargs.empty()) {
-        return;
+        throw EmptyCreateQueryException(meta.tableName());
     }
 
     std::string statement = "INSERT INTO ";
