@@ -11,7 +11,7 @@
 
 
 std::shared_ptr<User> BaseCommand::authenticate() {
-    auto username = _request.POST.find("username");
+    auto username = _request.OPTIONS.find("username");
     auto password = _request.POST.find("password");
 
     auto endIt = _request.POST.end();
@@ -30,7 +30,6 @@ std::shared_ptr<User> BaseCommand::authenticate() {
         _request.AUTH.first = std::move(username->second);
         _request.AUTH.second = std::move(password->second);
 
-        _request.POST.erase(username);
         _request.POST.erase(password);
 
         return user;
