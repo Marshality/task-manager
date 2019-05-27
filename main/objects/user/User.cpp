@@ -14,19 +14,19 @@ const char* User::id() const {
     return set->get(index, 0);
 }
 
-const char* User::name() const {
+const char* User::username() const {
     return set->get(index, 1);
 }
 
-const char* User::surname() const {
+const char* User::password() const {
     return set->get(index, 2);
 }
 
-const char* User::birth_date() const {
+const char* User::name() const {
     return set->get(index, 3);
 }
 
-const char* User::avatar() const {
+const char* User::surname() const {
     return set->get(index, 4);
 }
 
