@@ -12,8 +12,8 @@ Meta<User>::Meta() :
                 "users",
                 {
                         "id",
+                        "username",
+                        "password",
                         "name",
-                        "surname",
-                        "birth_date",
-                        "avatar"
+                        "surname"
                 }) {}
