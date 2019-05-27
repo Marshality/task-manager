@@ -19,12 +19,12 @@
 <div style="margin: 20px">
     <div>
         <form action="{{ username }}/{{ project_id }}" style="display: inline;" method="post">
-            <input type="hidden" name="password" value="{{password}}">
+            <input type="hidden" name="password" value="{{ password }}">
             <button class="btn btn-secondary btn-sm" type="submit">Отменить создание</button>
         </form>
     </div>
     <h2 class="hdr">Создайте новую задачу</h2>
-    <form action = "projectOut.html" method = "post">
+    <form action = "{{ username }}/{{ project_id }}/success" method = "post">
         <div class="row">
             <label for="title">Название:</label>
             <input class="" name="title" id="title">
@@ -38,7 +38,7 @@
             <select class="custom-select" id="chooseUser">
                 <option selected>Исполнитель...</option>
                 {{ #users }}
-                <option value="{{ id }}">{{ user }}</option>
+                <option value="{{ user.id }}">{{ user.name }} {{ user.surname }} [{{ user.username }}]</option>
                 {{ /users }}
             </select>
         </div>
@@ -46,7 +46,7 @@
             <label class="control-label" for="date">Дедлайн:</label>
             <input class="form-control" id="date" name="date" placeholder="ГГГГ-ММ-ДД" type="text"/>
         </div>
-        <input type="hidden" name="password" value="{{password}}">
+        <input type="hidden" name="password" value="{{ password }}">
         <div style="text-align: center;" class="row">
             <button class="btn btn-my" type="submit">Создать</button>
         </div>
