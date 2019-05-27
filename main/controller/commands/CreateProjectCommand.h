@@ -15,6 +15,7 @@ public:
 
     void execute() override {
         auto user = authenticate();
+
         _renderedPage = _renderer.addProject(_request);
     }
 };
