@@ -4,8 +4,9 @@
 
 #include "Connection.h"
 
-#include </usr/local/Cellar/libpq/11.1/include/libpq-fe.h>
+#include <libpq-fe.h>
 #include "exceptions/PGException.h"
+#include "exceptions/BadQueryException.h"
 
 Connection::Connection(const char* config) :
         connection(PQconnectdb(config)) {}
@@ -23,7 +24,12 @@ std::shared_ptr<ResultSet> Connection::execute(const std::string& query) const {
         throw PGException(PQerrorMessage(connection));
     }
 
-    return std::make_shared<ResultSet>(PQexec(connection, query.c_str()));
+    auto res = std::make_shared<ResultSet>(PQexec(connection, query.c_str()));
+    if (!res->isOk()) {
+        throw BadQueryException();
+    }
+
+    return res;
 }
 
 std::shared_ptr<ResultSet>
@@ -32,5 +38,10 @@ Connection::executeWithParams(const std::string& query, const char** params, int
         throw PGException(PQerrorMessage(connection));
     }
 
-    return std::make_shared<ResultSet>(PQexecParams(connection, query.c_str(), argsCount, NULL, params, NULL, NULL, 0));
+    auto res = std::make_shared<ResultSet>(PQexecParams(connection, query.c_str(), argsCount, NULL, params, NULL, NULL, 0));
+    if (!res->isOk()) {
+        throw BadQueryException();
+    }
+
+    return res;
 }

@@ -4,7 +4,7 @@
 
 #include "ResultSet.h"
 
-#include </usr/local/Cellar/libpq/11.1/include/libpq-fe.h>
+#include <libpq-fe.h>
 #include "exceptions/CursorIndexExceedsException.h"
 
 
@@ -31,4 +31,12 @@ int ResultSet::getObjectsCount() const {
 
 int ResultSet::getFieldsCount() const {
     return fieldsCount;
+}
+
+bool ResultSet::isOk() const {
+    return PQresultStatus(result) == PGRES_COMMAND_OK || PQresultStatus(result) == PGRES_TUPLES_OK;
+}
+
+bool ResultSet::isEmpty() const {
+    return objectsCount == 0;
 }

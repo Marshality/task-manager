@@ -8,12 +8,16 @@
 #include "BaseCommand.h"
 
 
-class DeleteTaskCommand : public BaseCommand {
+class CreateTaskCommandSuccess : public BaseCommand {
 public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
+        auto user = authenticate();
 
+        Task::create(_request.POST);
+
+        _renderedPage = _renderer.addTaskSuccess(_request);
     }
 };
 

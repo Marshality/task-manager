@@ -17,6 +17,7 @@ include_directories(${mstch_INCLUDE_DIR})
 link_libraries(mstch)
 
 add_executable(main
+#        main.cpp
         controller/Controller.cpp
         database/Storage.cpp
         objects/task/Task.cpp
@@ -32,6 +33,7 @@ add_executable(main
         web-server/beastserver/HttpServer.cpp
         web-server/beastserver/Session.cpp
         web-server/beastserver/Listener.cpp
+        controller/commands/BaseCommand.cpp
         )
 
 target_include_directories(main PRIVATE .)

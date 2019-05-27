@@ -19,10 +19,10 @@ public:
 
     // Direct fields
     const char* id() const;
+    const char* username() const;
+    const char* password() const;
     const char* name() const;
     const char* surname() const;
-    const char* birth_date() const;
-    const char* avatar() const;
 
     // Relative fields
     std::shared_ptr<Set<Project>> projects();

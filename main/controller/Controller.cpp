@@ -13,12 +13,12 @@ std::string Controller::index(Request& request) {
 }
 
 std::string Controller::createTask(Request& request) {
-    CreateProjectCommand cmd(_renderer, request);
+    CreateTaskCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
-std::string Controller::deleteTask(Request& request) {
-    DeleteTaskCommand cmd(_renderer, request);
+std::string Controller::createTaskSuccess(Request& request) {
+    CreateTaskCommandSuccess cmd(_renderer, request);
     return execute(cmd);
 }
 
@@ -27,8 +27,8 @@ std::string Controller::createProject(Request& request) {
     return execute(cmd);
 }
 
-std::string Controller::deleteProject(Request& request) {
-    DeleteProjectCommand cmd(_renderer, request);
+std::string Controller::createProjectSuccess(Request& request) {
+    CreateProjectSuccessCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
@@ -37,8 +37,14 @@ std::string Controller::createUser(Request& request) {
     return execute(cmd);
 }
 
-std::string Controller::deleteUser(Request& request) {
+std::string Controller::enterUser(Request& request) {
+    EnterUserCommand cmd(_renderer, request);
+    return execute(cmd);
+}
 
+std::string Controller::userSuccess(Request& request) {
+    UserSuccessCommand cmd(_renderer, request);
+    return execute(cmd);
 }
 
 std::string Controller::task(Request& request) {

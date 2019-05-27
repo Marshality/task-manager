@@ -1,5 +1,5 @@
 host=localhost
 port=5432
 dbname=ex
-user=ex_user
+user=jason
 password=12345678

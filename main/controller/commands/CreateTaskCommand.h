@@ -14,7 +14,10 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        Task::create(_request.OPTIONS);
+        auto user = authenticate();
+        auto users = User::getMany({});
+
+        _renderedPage = _renderer.addTask(_request, users);
     }
 };
 

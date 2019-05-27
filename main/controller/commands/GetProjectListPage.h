@@ -14,7 +14,9 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        auto projects = Project::getMany(_request.OPTIONS);
+        auto user = authenticate();
+
+        auto projects = user->projects();
 
         _renderedPage = _renderer.projectListPage(_request, projects);
     }
