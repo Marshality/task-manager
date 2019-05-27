@@ -77,27 +77,33 @@ void RequestHandler<Send>::handle(http::request<Body, boost::beast::http::basic_
         page = controller.index(request);
     } else if (urlParamsCount == 1) {
         if (urlParams[0] == "signin") {
-//            page = controller.signIn(request);
+            page = controller.enterUser(request);
         } else if (urlParams[0] == "signup") {
-//            page = controller.signUp(request);
+            page = controller.createUser(request);
         } else if (urlParams[0] == "success") {
-//            page = controller.success(request);
+            page = controller.userSuccess(request);
+        } else {
+            page = controller.projectList(request);
         }
     } else if (urlParamsCount == 2) {
+        request.OPTIONS.emplace("username", urlParams[0]);
+
         if (urlParams[1] == "new") {
             page = controller.createProject(request);
         } else if (urlParams[1] == "success") {
-//            page = controller.projectSuccess(request);
+            page = controller.createProjectSuccess(request);
         } else {
-            page = controller.project(request); // необходима валидация на число
+            page = controller.project(request);
         }
     } else if (urlParamsCount == 3) {
+        request.OPTIONS.emplace("username", urlParams[0]);
+
         if (urlParams[2] == "new") {
             page = controller.createTask(request);
         } else if (urlParams[2] == "success") {
-//            page = controller.taskSuccess(request);
+            page = controller.createTaskSuccess(request);
         } else {
-            page = controller.task(request); // необходима валидация на число
+            page = controller.task(request);
         }
     } else {
         return send(notFound(req.target()));

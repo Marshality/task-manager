@@ -20,12 +20,14 @@ public:
             throw NoFormParameterException();
         }
 
-        if (formType->second == "registry") {
+        if (formType->second == "sign_up") {
             _request.POST.erase(formType);
             User::create(_request.POST);
-        } else if (formType->second != "login") {
+        } else if (formType->second != "sign_in") {
             throw NoFormParameterException();
         }
+
+        _request.OPTIONS.emplace("username", _request.POST["username"]);
 
         auto user = authenticate();
         _renderedPage = _renderer.loginSuccess(_request);
