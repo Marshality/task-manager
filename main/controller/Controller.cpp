@@ -43,7 +43,7 @@ std::string Controller::enterUser(Request& request) {
 }
 
 std::string Controller::userSuccess(Request& request) {
-    DeleteUserCommand cmd(_renderer, request);
+    UserSuccessCommand cmd(_renderer, request);
     return execute(cmd);
 }
 

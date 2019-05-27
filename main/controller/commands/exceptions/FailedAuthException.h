@@ -7,6 +7,7 @@
 
 #include <exception>
 
+
 class FailedAuthException : public std::exception {
 public:
     const char* what() const noexcept override {

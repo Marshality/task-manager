@@ -14,7 +14,7 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        User::create(_request.OPTIONS);
+        _renderedPage = _renderer.signUp(_request);
     }
 };
 
