@@ -18,6 +18,8 @@ public:
     int getObjectsCount() const;
     int getFieldsCount() const;
 
+    bool isOk() const;
+
 private:
     pg_result* result;
 

@@ -54,9 +54,12 @@ std::shared_ptr<ResultSet> Storage::getQuery(const string_map& kwargs, const Bas
             params[i] = pair.second.c_str();
 
             statement += std::to_string(++i);
-            statement += ',';
+            statement += " AND ";
         }
 
+        for (int j = 0; j < 4; ++j) {
+            statement.pop_back();
+        }
         statement.back() = ';';
 
         return connection.executeWithParams(statement, params, argsCount);
