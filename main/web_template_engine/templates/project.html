@@ -1,0 +1,120 @@
+<style>
+    td {padding: 10px 15px;}
+
+    .card-my {
+        display: block;
+        width: 100%;
+        float: left
+    }
+
+    @media only screen and (min-width: 450px) {
+        .card-my {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .card-my {
+            width: 33.333%;
+        }
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .card-my {
+            width: 25%;
+        }
+    }
+
+    .product {
+        display: block;
+        border: 2px solid #563d7c;
+        border-radius: 3px;
+        position: relative;
+        background: #fff;
+        margin: 0 20px 20px 0;
+        padding: 20px;
+        text-decoration: none;
+        color: black;
+        z-index: 0;
+        height: 200px;
+    }
+
+    .product p {
+        position: relative;
+        margin: 20px 0 0 0;
+        margin-top: 10px;
+        font-size: 1em;
+        line-height: 1.4em;
+        height: 4.2em;
+        overflow: hidden;
+        color: gray;
+    }
+
+    .product a {
+        margin-left: 60%;
+    }
+
+    .product:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+    .product:hover div {
+        color: black;
+    }
+
+    .btn-done {
+        width: 100%;
+        padding-right: 42px;
+    }
+</style>
+
+<div style="margin: 20px">
+    <form action="/{{ username }}/" method="post">
+        <input type="hidden" name="password" value="{{password}}">
+        <button class="btn btn-secondary btn-sm" type="submit">Назад к проектам</button>
+    </form>
+
+    <h1>{{ title }}</h1>
+
+    <p style="color: grey;"> {{ description }} </p>
+
+    <div class="container main-body">
+        <div class="row">
+            <div class="col-10">
+                <table>
+                    <tr>
+                        <td>Создатель:</td>
+                        <td>{{ name }} {{ surname }}</td>
+                    </tr>
+                    <tr>
+                        <td>Проект создан:</td>
+                        <td>{{ creation_date }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+                <form action="/{{ username }}/projects/{{ project_id }}/new/" method="post">
+                    <input type="hidden" name="password" value="{{password}}">
+                    <button class="btn btn-my" type="submit">Добавить задачу</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <ul style="padding-right: 20px;">
+    {{ #tasks }}
+        <li class="card-my">
+            <form action="/{{ username }}/projects/{{ project_id }}/tasks/{{ task.id }}/" method="post">
+                <input type="hidden" name="password" value="{{password}}">
+                <button class="product">
+                    <h3>{{ task.title }}</h3>
+                    <div>Исполнитель: {{ task.name }} {{ task.surname }}</div>
+                    <div>Срок выполнения: {{ task.deadline }}</div>
+                    <p>{{ task.description }}</p>
+                </button>
+            </form>
+        </li>
+    {{ /tasks }}
+    </ul>
+</div>

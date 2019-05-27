@@ -1,0 +1,41 @@
+<style>
+    .hdr {
+        margin: 30px 0;
+    }
+
+    .row {
+        margin-bottom: 30px;
+    }
+
+    input, textarea, select {
+        margin-left: 30px;
+        width: 75% !important;
+    }
+
+    label {
+        width: 20%;
+    }
+</style>
+<div style="margin: 20px">
+    <div>
+        <form action="/{{ username }}/" style="display: inline;" method="post">
+            <input type="hidden" name="password" value="{{password}}">
+            <button class="btn btn-secondary btn-sm" type="submit">Отменить создание</button>
+        </form>
+    </div>
+    <h2 class="hdr">Создайте новый проект</h2>
+    <form action = "/{{ username }}/success/" method = "post">
+        <div class="row">
+            <label for="title">Название:</label>
+            <input class="" name="title" id="title">
+        </div>
+        <div class="row">
+            <label for="description">Описание проекта:</label>
+            <textarea class="form-control" name="description" id="description" aria-label="With textarea"></textarea>
+        </div>
+        <input type="hidden" name="password" value="{{password}}">
+        <div style="text-align: center;" class="row">
+            <button class="btn btn-my" type="submit">Создать</button>
+        </div>
+    </form>
+</div>

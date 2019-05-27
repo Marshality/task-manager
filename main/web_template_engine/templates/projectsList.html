@@ -1,0 +1,108 @@
+<style>
+    td {padding: 10px 15px;}
+
+    .card-my {
+        display: block;
+        width: 100%;
+        float: left
+    }
+
+    @media only screen and (min-width: 450px) {
+        .card-my {
+            width: 50%;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .card-my {
+            width: 33.333%;
+        }
+    }
+
+    @media only screen and (min-width: 1000px) {
+        .card-my {
+            width: 25%;
+        }
+    }
+    .product {
+        display: block;
+        border: 2px solid #563d7c;
+        border-radius: 3px;
+        position: relative;
+        background: #fff;
+        margin: 0 20px 20px 0;
+        padding: 20px;
+        text-decoration: none;
+        color: black;
+        z-index: 0;
+        height: 200px;
+    }
+
+    .product p {
+        position: relative;
+        margin: 0;
+        margin-top: 10px;
+        font-size: 1em;
+        line-height: 1.4em;
+        height: 4.2em;
+        overflow: hidden;
+        color: gray;
+    }
+
+    .product p:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 4.2em;
+        height: 1.6em;
+        background: linear-gradient(to left top, #fff, rgba(255, 255, 255, 0));
+    }
+
+    .product a {
+        margin-left: 60%;
+    }
+
+    .product:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .product:hover div {
+        color: black;
+    }
+</style>
+
+<div style="margin: 20px;">
+    <h1>Текущие проекты</h1>
+    <div class="container main-body">
+        <div class="row">
+            <div class="col-10">
+            </div>
+            <div class="col">
+                <form action="/{{ username }}/new/" method="post">
+                    <input type="hidden" name="password" value="{{password}}">
+                    <button class="btn btn-my" type="submit">Добавить проект</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <ul style="padding-right: 20px;">
+        {{ #projects }}
+        <li class="card-my">
+            <form action="/{{ username }}/projects/{{ project_id }}/" method="post">
+                <input type="hidden" name="password" value="{{password}}">
+                <button class="product">
+                    <h3>{{ project.title }}</h3>
+                    <div>Создатель: {{ project.name }} {{ project.surname }}</div>
+                    <div>Дата создания: {{ project.creation_date}}</div>
+                    <p>{{ project.description }}</p>
+                </button>
+            </form>
+        </li>
+        {{ /projects }}
+    </ul>
+</div>

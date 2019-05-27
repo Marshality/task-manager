@@ -1,0 +1,73 @@
+<style>
+    .hdr {
+        margin: 30px 0;
+    }
+
+    .row {
+        margin-bottom: 30px;
+    }
+
+    input, textarea, select {
+        margin-left: 30px;
+        width: 75% !important;
+    }
+
+    label {
+        width: 20%;
+    }
+</style>
+<div style="margin: 20px">
+    <div>
+        <form action="/{{ username }}/projects/{{ project_id }}/" style="display: inline;" method="post">
+            <input type="hidden" name="password" value="{{ password }}">
+            <button class="btn btn-secondary btn-sm" type="submit">Отменить создание</button>
+        </form>
+    </div>
+    <h2 class="hdr">Создайте новую задачу</h2>
+    <form action = "/{{ username }}/projects/{{ project_id }}/success/" method = "post">
+        <div class="row">
+            <label for="title">Название:</label>
+            <input class="" name="title" id="title">
+        </div>
+        <div class="row">
+            <label for="description">Описание задачи:</label>
+            <textarea class="form-control" name="description" id="description" aria-label="With textarea"></textarea>
+        </div>
+        <div class="row">
+            <label for="chooseUser">Выберите исполнителя:</label>
+            <select class="custom-select" id="chooseUser">
+                <option selected>Исполнитель...</option>
+                {{ #users }}
+                <option value="{{ user.id }}">{{ user.name }} {{ user.surname }} [{{ user.username }}]</option>
+                {{ /users }}
+            </select>
+        </div>
+        <div class="row form-group bootstrap-iso"> <!-- Date input -->
+            <label class="control-label" for="date">Дедлайн:</label>
+            <input class="form-control" id="date" name="date" placeholder="ГГГГ-ММ-ДД" type="text"/>
+        </div>
+        <input type="hidden" name="password" value="{{ password }}">
+        <div style="text-align: center;" class="row">
+            <button class="btn btn-my" type="submit">Создать</button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+            format: 'yyyy-mm-dd',
+            container: container,
+            orientation: 'top right',
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>

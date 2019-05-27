@@ -1,0 +1,5 @@
+host=localhost
+port=5432
+dbname=ex
+user=jason
+password=12345678

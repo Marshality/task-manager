@@ -1,0 +1,28 @@
+<style>
+    h3 {
+        margin-bottom: 30px;
+    }
+</style>
+
+<div style="margin: 20px; text-align: center;">
+    <h3>Форма регистрации</h3>
+    <form method="post" class="mx-auto w-25" action="/success/">
+        <input type="hidden" name="form" value="sign_up">
+        <div class="form-group mb-2">
+            <input type="text" class="form-control" name="username" placeholder="Никнейм">
+        </div>
+        <div class="form-group mb-2">
+            <input type="text" class="form-control" name="name" placeholder="Имя">
+        </div>
+        <div class="form-group mb-2">
+            <input type="text" class="form-control" name="surname" placeholder="Фамилия">
+        </div>
+        <div class="form-group mb-2">
+            <input type="password" class="form-control" name="password1" placeholder="Пароль">
+        </div>
+        <div class="form-group mb-2">
+            <input type="password" class="form-control" name="password2" placeholder="Повторите пароль">
+        </div>
+        <button type="submit" class="btn btn-my">Зарегистрироваться!</button>
+    </form>
+</div>

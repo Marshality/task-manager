@@ -1,0 +1,7 @@
+<div style="margin: 20px; text-align: center;">
+    <h1 style="margin-top: 5%;">Добро пожаловать, {{ username }}!</h1>
+    <form action="/{{ username }}/" method="post">
+        <input type="hidden" name="password" value="{{password}}">
+        <button class="btn btn-my btn-lg" type="submit">Перейти к проектам</button>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<style>
+    td {padding: 10px 15px;}
+</style>
+
+<div style="margin: 20px">
+    <div>
+        <form action="/{{ username }}/projects/{{ project_id }}/" style="display: inline;" method="post">
+            <input type="hidden" name="password" value="{{password}}">
+            <button class="btn btn-secondary btn-sm" type="submit">Назад к списку задач</button>
+        </form>
+        <h3 style="display: inline; margin-left: 30%">Проект {{ project }}</h3>
+    </div>
+    <h1>{{ title }}</h1>
+    <table>
+        <tr>
+            <td>Описание задачи:</td>
+            <td>{{ description }}</td>
+        </tr>
+        <tr>
+            <td>Исполнитель:</td>
+            <td>{{ name }} {{ surname }}</td>
+        </tr>
+        <tr>
+            <td >Создание задачи:</td>
+            <td>{{ creation_date }}</td>
+        </tr>
+        <tr>
+            <td>Срок выполнения задачи:</td>
+            <td>{{ deadline }} </td>
+        </tr>
+    </table>
+</div>
