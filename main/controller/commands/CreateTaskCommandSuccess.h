@@ -2,13 +2,13 @@
 // Created by Святослав Кряжев on 06.05.2019.
 //
 
-#ifndef MAIN_DELETEPROJECTCOMMAND_H
-#define MAIN_DELETEPROJECTCOMMAND_H
+#ifndef MAIN_DELETETASKCOMMAND_H
+#define MAIN_DELETETASKCOMMAND_H
 
 #include "BaseCommand.h"
 
 
-class DeleteProjectCommand : public BaseCommand {
+class CreateTaskCommandSuccess : public BaseCommand {
 public:
     using BaseCommand::BaseCommand;
 
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //MAIN_DELETEPROJECTCOMMAND_H
+#endif //MAIN_DELETETASKCOMMAND_H

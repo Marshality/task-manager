@@ -17,8 +17,8 @@ std::string Controller::createTask(Request& request) {
     return execute(cmd);
 }
 
-std::string Controller::deleteTask(Request& request) {
-    DeleteTaskCommand cmd(_renderer, request);
+std::string Controller::createTaskSuccess(Request& request) {
+    CreateTaskCommandSuccess cmd(_renderer, request);
     return execute(cmd);
 }
 
@@ -27,22 +27,22 @@ std::string Controller::createProject(Request& request) {
     return execute(cmd);
 }
 
-std::string Controller::deleteProject(Request& request) {
-    DeleteProjectCommand cmd(_renderer, request);
+std::string Controller::createProjectSuccess(Request& request) {
+    CreateProjectSuccessCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
-std::string Controller::signUp(Request& request) {
+std::string Controller::createUser(Request& request) {
     CreateUserCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
-std::string Controller::signIn(Request& request) {
+std::string Controller::enterUser(Request& request) {
     EnterUserCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
-std::string Controller::deleteAccount(Request& request) {
+std::string Controller::userSuccess(Request& request) {
     DeleteUserCommand cmd(_renderer, request);
     return execute(cmd);
 }

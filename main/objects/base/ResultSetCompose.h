@@ -8,8 +8,17 @@
 #include <memory>
 #include "ResultSet.h"
 
+#include "exceptions/NoneObjectException.h"
+
 
 class ResultSetCompose {
+public:
+    void approve() const {
+        if (set->isEmpty()) {
+            throw NoneObjectException();
+        }
+    }
+
 protected:
     explicit ResultSetCompose(std::shared_ptr<ResultSet> _set) : set(std::move(_set)) {}
 

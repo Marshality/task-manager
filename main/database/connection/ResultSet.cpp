@@ -36,3 +36,7 @@ int ResultSet::getFieldsCount() const {
 bool ResultSet::isOk() const {
     return PQresultStatus(result) == PGRES_COMMAND_OK || PQresultStatus(result) == PGRES_TUPLES_OK;
 }
+
+bool ResultSet::isEmpty() const {
+    return objectsCount == 0;
+}

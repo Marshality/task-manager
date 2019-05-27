@@ -20,11 +20,15 @@ std::shared_ptr<User> BaseCommand::authenticate() {
 
     try {
         auto user = User::getOne({{username->first, username->second}, {password->first, password->second}});
+        user->approve();
+
         _request.AUTH.first = std::move(username->second);
         _request.AUTH.second = std::move(password->second);
 
         _request.POST.erase(username);
         _request.POST.erase(password);
+
+        return user;
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
         throw FailedAuthException();

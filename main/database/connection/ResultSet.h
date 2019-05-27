@@ -19,6 +19,7 @@ public:
     int getFieldsCount() const;
 
     bool isOk() const;
+    bool isEmpty() const;
 
 private:
     pg_result* result;
