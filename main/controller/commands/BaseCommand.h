@@ -23,6 +23,8 @@ protected:
     Renderer& _renderer;
     Request& _request;
     std::string _renderedPage;
+
+    void authenticate();
 };
 
 

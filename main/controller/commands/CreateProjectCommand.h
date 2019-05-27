@@ -14,7 +14,9 @@ public:
     using BaseCommand::BaseCommand;
 
     void execute() override {
-        Project::create(_request.OPTIONS);
+        authenticate();
+
+        Project::create(_request.POST);
     }
 };
 
