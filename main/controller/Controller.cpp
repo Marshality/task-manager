@@ -13,7 +13,7 @@ std::string Controller::index(Request& request) {
 }
 
 std::string Controller::createTask(Request& request) {
-    CreateProjectCommand cmd(_renderer, request);
+    CreateTaskCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
