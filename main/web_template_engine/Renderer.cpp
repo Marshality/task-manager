@@ -116,6 +116,7 @@ std::string Renderer::renderAddTask(Request& request, std::shared_ptr<Set<User>>
                 mstch::map{{"user", mstch::map{
                         {"name", std::string(user.name())},
                         {"surname", std::string(user.surname())},
+                        {"username", std::string(user.)}
                 }}}
         );
     });

@@ -6,7 +6,7 @@
 
 <div style="margin: 20px; text-align: center;">
     <p>Задача успешно добавлена</p>
-    <form action="/{{ username }}/{{ project_id }}/success/" method="post">
+    <form action="/{{ username }}/projects/{{ project_id }}/success/" method="post">
         <input type="hidden" name="password" value="{{password}}">
         <button class="btn btn-my btn-lg" type="submit">Обратно к проекту</button>
     </form>

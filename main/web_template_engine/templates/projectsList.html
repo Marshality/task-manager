@@ -93,7 +93,7 @@
     <ul style="padding-right: 20px;">
         {{ #projects }}
         <li class="card-my">
-            <form action="/{{ username }}/{{ project_id }}/" method="post">
+            <form action="/{{ username }}/projects/{{ project_id }}/" method="post">
                 <input type="hidden" name="password" value="{{password}}">
                 <button class="product">
                     <h3>{{ project.title }}</h3>
