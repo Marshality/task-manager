@@ -18,13 +18,13 @@
 </style>
 <div style="margin: 20px">
     <div>
-        <form action="{{ username }}/{{ project_id }}" style="display: inline;" method="post">
+        <form action="/{{ username }}/{{ project_id }}/" style="display: inline;" method="post">
             <input type="hidden" name="password" value="{{ password }}">
             <button class="btn btn-secondary btn-sm" type="submit">Отменить создание</button>
         </form>
     </div>
     <h2 class="hdr">Создайте новую задачу</h2>
-    <form action = "{{ username }}/{{ project_id }}/success" method = "post">
+    <form action = "/{{ username }}/{{ project_id }}/success/" method = "post">
         <div class="row">
             <label for="title">Название:</label>
             <input class="" name="title" id="title">
