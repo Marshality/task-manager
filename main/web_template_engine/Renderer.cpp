@@ -15,7 +15,7 @@ std::string Renderer::base(std::string body, std::string pageTitle) {
 }
 
 std::string Renderer::renderMain() {
-    return path("main.html");
+    return path("mainPage.html");
 }
 
 std::string Renderer::renderProjectList(Request& request, std::shared_ptr<Set<Project>> projects) {
