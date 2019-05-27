@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "exceptions/FailedAuthException.h"
+#include "exceptions/UsernameMismatchException.h"
 #include "user/User.h"
 
 
@@ -21,6 +22,10 @@ std::shared_ptr<User> BaseCommand::authenticate() {
     try {
         auto user = User::getOne({{username->first, username->second}, {password->first, password->second}});
         user->approve();
+
+        if (username->second != _request.OPTIONS["username"]) {
+            throw UsernameMismatchException();
+        }
 
         _request.AUTH.first = std::move(username->second);
         _request.AUTH.second = std::move(password->second);
