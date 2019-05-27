@@ -13,6 +13,8 @@
 #include "commands/CreateTaskCommand.h"
 #include "commands/DeleteTaskCommand.h"
 #include "commands/CreateUserCommand.h"
+#include "commands/EnterUserCommand.h"
+#include "commands/DeleteUserCommand.h"
 #include "commands/GetProjectCommand.h"
 #include "commands/GetTaskCommand.h"
 #include "commands/GetProjectListPage.h"

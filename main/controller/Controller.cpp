@@ -32,13 +32,19 @@ std::string Controller::deleteProject(Request& request) {
     return execute(cmd);
 }
 
-std::string Controller::createUser(Request& request) {
+std::string Controller::signUp(Request& request) {
     CreateUserCommand cmd(_renderer, request);
     return execute(cmd);
 }
 
-std::string Controller::deleteUser(Request& request) {
+std::string Controller::signIn(Request& request) {
+    EnterUserCommand cmd(_renderer, request);
+    return execute(cmd);
+}
 
+std::string Controller::deleteAccount(Request& request) {
+    DeleteUserCommand cmd(_renderer, request);
+    return execute(cmd);
 }
 
 std::string Controller::task(Request& request) {
