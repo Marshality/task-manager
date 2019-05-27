@@ -9,7 +9,7 @@
 #include "user/User.h"
 
 
-void BaseCommand::authenticate() {
+std::shared_ptr<User> BaseCommand::authenticate() {
     auto username = _request.POST.find("username");
     auto password = _request.POST.find("password");
 

@@ -24,7 +24,7 @@ protected:
     Request& _request;
     std::string _renderedPage;
 
-    void authenticate();
+    std::shared_ptr<User> authenticate();
 };
 
 
